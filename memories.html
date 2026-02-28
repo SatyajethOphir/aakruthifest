@@ -1,0 +1,1902 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <title>
+      Memory Archive | Aakruthi 2K26 — ECE Technical Symposium, UCE Osmania
+      University
+    </title>
+    <meta
+      name="description"
+      content="Relive the best moments from past Aakruthi ECE Technical Symposiums at UCE Osmania University. Browse photos from events, ISRO visits, cultural nights, and more. Submit your own memories too!"
+    />
+    <meta
+      name="keywords"
+      content="Aakruthi memories, Aakruthi photos, ECE Technical Symposium gallery, UCE Osmania University photos, Aakruthi 2K25, Aakruthi 2K26, UCEOU gallery, engineering symposium Hyderabad photos"
+    />
+    <meta name="author" content="Department of ECE, UCE Osmania University" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <link rel="canonical" href="https://aakruthi.osmania.ac.in/memories.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Aakruthi 2K26" />
+    <meta
+      property="og:title"
+      content="Memory Archive | Aakruthi 2K26 — ECE Technical Symposium, UCE Osmania University"
+    />
+    <meta
+      property="og:description"
+      content="Visual logs from past Aakruthi ECE Technical Symposiums — events, ISRO visits, cultural nights & more. Browse the gallery and submit your own photos."
+    />
+    <meta
+      property="og:image"
+      content="https://aakruthi.osmania.ac.in/assets/og-cover.jpg"
+    />
+    <meta
+      property="og:url"
+      content="https://aakruthi.osmania.ac.in/memories.html"
+    />
+    <meta property="og:locale" content="en_IN" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Memory Archive | Aakruthi 2K26 — ECE Technical Symposium, UCE Osmania"
+    />
+    <meta
+      name="twitter:description"
+      content="Photos from past Aakruthi ECE Technical Symposiums — events, ISRO visits, cultural nights & more. UCE Osmania University, Hyderabad."
+    />
+    <meta
+      name="twitter:image"
+      content="https://aakruthi.osmania.ac.in/assets/og-cover.jpg"
+    />
+    <meta name="twitter:site" content="@osmaniauniv" />
+
+    <meta name="geo.region" content="IN-TG" />
+    <meta name="geo.placename" content="Hyderabad, Telangana, India" />
+    <meta name="geo.position" content="17.3850;78.4867" />
+    <meta name="ICBM" content="17.3850, 78.4867" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ImageGallery",
+        "name": "Aakruthi Memory Archive — ECE Technical Symposium Photo Gallery",
+        "url": "https://aakruthi.osmania.ac.in/memories.html",
+        "description": "Photo gallery from past editions of Aakruthi, the annual ECE Technical Symposium of UCE Osmania University, Hyderabad.",
+        "author": {
+          "@type": "EducationalOrganization",
+          "name": "Department of ECE, UCE Osmania University",
+          "url": "https://aakruthi.osmania.ac.in/"
+        },
+        "breadcrumb": {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://aakruthi.osmania.ac.in/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Memories",
+              "item": "https://aakruthi.osmania.ac.in/memories.html"
+            }
+          ]
+        }
+      }
+    </script>
+
+    <link rel="icon" type="image/png" href="./assets/logo.png" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ── Brand logo hex wrapper ── */
+      .nav-logo-hex {
+        width: 42px;
+        height: 42px;
+        clip-path: polygon(
+          50% 0%,
+          100% 25%,
+          100% 75%,
+          50% 100%,
+          0% 75%,
+          0% 25%
+        );
+        background: linear-gradient(
+          135deg,
+          rgba(255, 43, 242, 0.3),
+          rgba(0, 245, 255, 0.3)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .nav-brand-logo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        filter: drop-shadow(0 0 6px rgba(0, 245, 255, 0.8));
+        transition: filter 0.3s;
+      }
+      .nav-brand:hover .nav-brand-logo {
+        filter: drop-shadow(0 0 10px rgba(255, 43, 242, 0.9));
+      }
+
+      /* ══════════════════════════════════════════════
+         MEMORY WALL — LAYOUT & SCROLL FLOW
+      ══════════════════════════════════════════════ */
+      .memory-wall {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 1rem;
+        row-gap: 0;
+        height: 700px;
+        overflow: hidden;
+        position: relative;
+        align-items: start;
+      }
+
+      .mem-col {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        overflow: visible;
+        transform: translate3d(0, 0, 0);
+        backface-visibility: hidden;
+        will-change: transform;
+      }
+
+      .mem-col.up {
+        animation: mem-scroll-up 30s linear infinite;
+      }
+      .mem-col.down {
+        animation: mem-scroll-down 35s linear infinite;
+      }
+      .mem-col.up2 {
+        animation: mem-scroll-up 22s linear infinite;
+      }
+
+      @keyframes mem-scroll-up {
+        from {
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          transform: translate3d(0, -50%, 0);
+        }
+      }
+      @keyframes mem-scroll-down {
+        from {
+          transform: translate3d(0, -50%, 0);
+        }
+        to {
+          transform: translate3d(0, 0, 0);
+        }
+      }
+
+      .gallery-paused .mem-col {
+        animation-play-state: paused !important;
+      }
+
+      /* ══════════════════════════════════════════════
+         IMAGE CARDS
+      ══════════════════════════════════════════════ */
+      .mem-item {
+        position: relative;
+        flex-shrink: 0;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        aspect-ratio: 4 / 3;
+        cursor: pointer;
+        background: #08081a;
+        margin-bottom: 1rem;
+        transition:
+          border-color 0.4s ease,
+          box-shadow 0.4s ease;
+      }
+      .mem-item:hover {
+        border-color: rgba(0, 245, 255, 0.45);
+        box-shadow:
+          0 0 18px rgba(0, 245, 255, 0.12),
+          inset 0 0 18px rgba(0, 245, 255, 0.04);
+      }
+
+      .mem-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        background: linear-gradient(
+          105deg,
+          #08081a 25%,
+          #12122e 45%,
+          #1a1a40 50%,
+          #12122e 55%,
+          #08081a 75%
+        );
+        background-size: 300% 100%;
+        animation: mem-shimmer 2s infinite ease-in-out;
+      }
+      .mem-item.img-done::before {
+        animation: none;
+        background: #08081a;
+      }
+
+      @keyframes mem-shimmer {
+        0% {
+          background-position: 150% 0;
+        }
+        100% {
+          background-position: -150% 0;
+        }
+      }
+
+      .mem-item img {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        opacity: 0;
+        filter: saturate(0.45) brightness(0.65);
+        transition:
+          opacity 0.55s ease,
+          filter 0.55s ease,
+          transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        transform: scale(1);
+      }
+      .mem-item img.img-loaded {
+        opacity: 1;
+      }
+      .mem-item:hover img.img-loaded {
+        filter: saturate(1.05) brightness(0.88);
+        transform: scale(1.07);
+      }
+
+      .mem-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 43, 242, 0.08),
+          rgba(0, 245, 255, 0.08)
+        );
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+      }
+      .mem-item:hover::after {
+        opacity: 1;
+      }
+
+      .mem-error {
+        display: none;
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        background: #08081a;
+        color: #1e1e3a;
+        font-family: "Share Tech Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+      }
+      .mem-error svg {
+        opacity: 0.25;
+      }
+      .mem-item.img-broken img {
+        display: none;
+      }
+      .mem-item.img-broken::before {
+        animation: none;
+        background: #08081a;
+      }
+      .mem-item.img-broken::after {
+        display: none;
+      }
+      .mem-item.img-broken .mem-error {
+        display: flex;
+      }
+      .mem-item img,
+      .mem-item .mem-error {
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ══════════════════════════════════════════════
+         FADE MASKS
+      ══════════════════════════════════════════════ */
+      .mem-wall-wrap {
+        position: relative;
+      }
+      .mem-wall-wrap::before,
+      .mem-wall-wrap::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 4;
+        pointer-events: none;
+      }
+      .mem-wall-wrap::before {
+        top: 0;
+        height: 140px;
+        background: linear-gradient(180deg, var(--bg) 20%, transparent 100%);
+      }
+      .mem-wall-wrap::after {
+        bottom: 0;
+        height: 140px;
+        background: linear-gradient(0deg, var(--bg) 20%, transparent 100%);
+      }
+
+      /* ══════════════════════════════════════════════
+         GALLERY CONTROLS
+      ══════════════════════════════════════════════ */
+      .gallery-controls {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        padding: 1rem 1rem 0;
+      }
+      .gal-btn {
+        font-family: "Share Tech Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        padding: 0.4rem 1rem;
+        cursor: pointer;
+        transition:
+          border-color 0.2s,
+          color 0.2s,
+          background 0.2s;
+        user-select: none;
+        line-height: 1.4;
+      }
+      .gal-btn:hover {
+        border-color: var(--neon-blue);
+        color: var(--neon-blue);
+      }
+      .gal-btn.active {
+        border-color: var(--neon-pink);
+        color: var(--neon-pink);
+        background: rgba(255, 43, 242, 0.07);
+      }
+
+      .gal-playpause {
+        width: 2.4rem;
+        height: 2.4rem;
+        border-radius: 50%;
+        border: 1px solid var(--neon-blue);
+        background: transparent;
+        color: var(--neon-blue);
+        font-size: 0.85rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition:
+          background 0.2s,
+          box-shadow 0.2s,
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .gal-playpause:hover {
+        background: rgba(0, 245, 255, 0.1);
+        box-shadow: 0 0 14px rgba(0, 245, 255, 0.3);
+      }
+      .gal-playpause.paused {
+        border-color: var(--neon-pink);
+        color: var(--neon-pink);
+      }
+      .gal-playpause.paused:hover {
+        background: rgba(255, 43, 242, 0.1);
+        box-shadow: 0 0 14px rgba(255, 43, 242, 0.3);
+      }
+
+      .ctrl-sep {
+        width: 1px;
+        height: 1.4rem;
+        background: var(--border);
+        flex-shrink: 0;
+      }
+
+      .speed-wrap {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: "Share Tech Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+        color: var(--text-muted);
+      }
+      .speed-val {
+        min-width: 2.8rem;
+        color: var(--neon-blue);
+      }
+
+      input[type="range"].gal-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+        outline: none;
+        border: none;
+        cursor: pointer;
+      }
+      input[type="range"].gal-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--neon-blue);
+        box-shadow: 0 0 7px var(--neon-blue);
+        cursor: pointer;
+      }
+      input[type="range"].gal-slider::-moz-range-thumb {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--neon-blue);
+        box-shadow: 0 0 7px var(--neon-blue);
+        border: none;
+        cursor: pointer;
+      }
+
+      .dir-group {
+        display: flex;
+      }
+      .dir-group .gal-btn {
+        border-right-width: 0;
+      }
+      .dir-group .gal-btn:last-child {
+        border-right-width: 1px;
+      }
+
+      .gal-status {
+        font-family: "Share Tech Mono", monospace;
+        font-size: 0.55rem;
+        letter-spacing: 0.3em;
+        padding: 0.22rem 0.65rem;
+        border: 1px solid var(--neon-pink);
+        color: var(--neon-pink);
+        animation: gal-blink 1.4s step-end infinite;
+        user-select: none;
+      }
+      .gal-status.is-paused {
+        border-color: #2a2a2a;
+        color: #2a2a2a;
+        animation: none;
+      }
+      @keyframes gal-blink {
+        50% {
+          opacity: 0.3;
+        }
+      }
+
+      .ctrl-hint {
+        width: 100%;
+        font-family: "Share Tech Mono", monospace;
+        font-size: 0.52rem;
+        letter-spacing: 0.18em;
+        color: #1e1e38;
+        text-align: center;
+        padding-top: 0.35rem;
+      }
+
+      /* ══════════════════════════════════════════════
+         LIGHTBOX
+      ══════════════════════════════════════════════ */
+      .lightbox-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9000;
+        background: rgba(1, 0, 8, 0.96);
+        backdrop-filter: blur(8px);
+        align-items: center;
+        justify-content: center;
+      }
+      .lightbox-overlay.open {
+        display: flex;
+      }
+      .lb-inner {
+        position: relative;
+        max-width: min(92vw, 980px);
+        max-height: 90vh;
+        animation: lb-pop 0.22s ease;
+      }
+      @keyframes lb-pop {
+        from {
+          opacity: 0;
+          transform: scale(0.93);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .lb-inner img {
+        display: block;
+        max-width: 100%;
+        max-height: 88vh;
+        object-fit: contain;
+        border: 1px solid var(--neon-pink);
+        box-shadow: 0 0 50px rgba(255, 43, 242, 0.18);
+      }
+      .lb-close {
+        position: absolute;
+        top: -1.9rem;
+        right: 0;
+        background: transparent;
+        border: none;
+        color: #444;
+        font-size: 1.3rem;
+        cursor: pointer;
+        font-family: monospace;
+        transition: color 0.2s;
+        line-height: 1;
+      }
+      .lb-close:hover {
+        color: var(--neon-pink);
+      }
+      .lb-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(1, 0, 8, 0.7);
+        border: 1px solid #222;
+        color: #555;
+        width: 2rem;
+        height: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 1rem;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+        line-height: 1;
+      }
+      .lb-nav:hover {
+        border-color: var(--neon-blue);
+        color: var(--neon-blue);
+      }
+      .lb-prev {
+        right: calc(100% + 0.6rem);
+      }
+      .lb-next {
+        left: calc(100% + 0.6rem);
+      }
+      .lb-counter {
+        position: absolute;
+        bottom: -1.7rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-family: "Share Tech Mono", monospace;
+        font-size: 0.55rem;
+        letter-spacing: 0.3em;
+        color: #2a2a4a;
+        white-space: nowrap;
+      }
+
+      /* ══════════════════════════════════════════════
+         RESPONSIVE
+      ══════════════════════════════════════════════ */
+      @media (max-width: 768px) {
+        .memory-wall {
+          grid-template-columns: 1fr 1fr;
+          height: 520px;
+          gap: 0.7rem;
+        }
+        .mem-col:last-child {
+          display: none;
+        }
+        .ctrl-sep {
+          display: none;
+        }
+        input[type="range"].gal-slider {
+          width: 70px;
+        }
+      }
+      @media (max-width: 480px) {
+        .memory-wall {
+          grid-template-columns: 1fr;
+          height: 440px;
+        }
+        .mem-col:nth-child(2) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <div id="loader">
+      <div class="loader-grid">
+        <div class="loader-cell"></div>
+        <div class="loader-cell"></div>
+        <div class="loader-cell"></div>
+        <div class="loader-cell"></div>
+        <div class="loader-cell"></div>
+        <div class="loader-cell"></div>
+        <div class="loader-cell"></div>
+        <div class="loader-cell"></div>
+        <div class="loader-cell"></div>
+      </div>
+      <div class="loader-bar"></div>
+      <div class="loader-text">ACCESSING MEMORY ARCHIVE...</div>
+    </div>
+
+    <!-- ─── NAVBAR ──────────────────────────────────── -->
+    <nav class="navbar">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-logo">
+          <img
+            src="./assets/logo.png"
+            alt="Aakruthi Logo"
+            class="nav-logo-brand-img"
+          />
+        </div>
+        <div class="nav-brand-text">
+          <span class="nav-title">AAKRUTHI</span>
+          <span class="nav-sub">ECE FEST · UCEOU · 2K26</span>
+        </div>
+      </a>
+      <div class="nav-logos">
+        <img
+          src="./assets/OU_logo.png"
+          alt="Osmania University"
+          class="nav-logo-img"
+          title="Osmania University"
+        />
+        <div class="nav-logo-divider"></div>
+        <img
+          src="./assets/uce_logo1.png"
+          alt="University College of Engineering"
+          class="nav-logo-img"
+          title="UCE, Osmania University"
+        />
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="memories.html" class="active">Memories</a></li>
+        <li><a href="sponsors.html">Sponsors</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="events.html" class="nav-register">⚡ Register</a>
+      <div class="hamburger" id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html" class="mobile-nav-link">Home</a>
+      <a href="events.html" class="mobile-nav-link">Events</a>
+      <a href="memories.html" class="mobile-nav-link">Memories</a>
+      <a href="sponsors.html" class="mobile-nav-link">Sponsors</a>
+      <a href="contact.html" class="mobile-nav-link">Contact</a>
+      <a href="events.html" class="mobile-menu-register">⚡ Register Now</a>
+      <div class="mobile-glitch">AAKRUTHI 2K26 · ECE · UCEOU · HYD</div>
+    </div>
+
+    <!-- ── LIGHTBOX ───────────────────────────────── -->
+    <div
+      class="lightbox-overlay"
+      id="lightbox"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Photo viewer"
+    >
+      <div class="lb-inner">
+        <button class="lb-close" id="lbClose" aria-label="Close">✕</button>
+        <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">
+          ‹
+        </button>
+        <button class="lb-nav lb-next" id="lbNext" aria-label="Next">›</button>
+        <img id="lbImg" src="" alt="Memory" />
+        <div class="lb-counter" id="lbCounter">01 / 18</div>
+      </div>
+    </div>
+
+    <!-- ── MAIN ───────────────────────────────────── -->
+    <main>
+      <div class="container" style="padding-top: 5rem">
+        <div class="section-header reveal">
+          <span class="section-tag">&gt; archive_recall.db</span>
+          <h2 class="section-title">Memory <span>Archive</span></h2>
+          <p class="section-lead">
+            Visual logs from previous Aakruthi cycles — a testament to the
+            energy, creativity, and community that defines our fest.
+          </p>
+        </div>
+
+        <!-- ── WALL WRAPPER ── -->
+        <div class="mem-wall-wrap reveal">
+          <!-- CONTROLS -->
+          <div class="gallery-controls">
+            <button
+              class="gal-playpause"
+              id="btnPlayPause"
+              title="Play / Pause [Space]"
+            >
+              ⏸
+            </button>
+            <div class="ctrl-sep"></div>
+            <div class="speed-wrap">
+              <span>SPEED</span>
+              <input
+                type="range"
+                class="gal-slider"
+                id="speedSlider"
+                min="0.25"
+                max="3"
+                step="0.25"
+                value="1"
+              />
+              <span class="speed-val" id="speedVal">1×</span>
+            </div>
+            <div class="ctrl-sep"></div>
+            <div class="dir-group">
+              <button class="gal-btn active" id="btnDefault">DEFAULT</button>
+              <button class="gal-btn" id="btnReverse">REVERSE</button>
+            </div>
+            <div class="ctrl-sep"></div>
+            <div class="gal-status" id="galStatus">● LIVE</div>
+          </div>
+          <div class="ctrl-hint">
+            [SPACE] pause · [← →] speed · [CLICK IMAGE] fullscreen
+          </div>
+
+          <!-- ══ MEMORY WALL ══════════════════════════════ -->
+          <div class="memory-wall" id="memoryWall">
+            <!-- ─────────────────────────────────────────
+                 COL 1 — scroll UP (30s)
+                 Images: 2I0A3811, dig_hodroom, dig_inside_bus,
+                         dig_teach_inside, dignitaries_brochure_aopening,
+                         dignitaries_lighting
+                 ───────────────────────────────────────── -->
+            <div class="mem-col up" id="col1" data-dur="30">
+              <!-- ── ORIGINAL SET ── -->
+              <div class="mem-item">
+                <img
+                  src="./assets/2I0A3811.JPG"
+                  alt="Aakruthi event highlight"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dig_hodroom.JPG"
+                  alt="HoD room gathering"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dig_inside_bus.JPG"
+                  alt="Dignitaries inside bus"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dig_teach_inside.JPG"
+                  alt="Faculty inside session"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dignitaries_brochure_aopening.JPG"
+                  alt="Brochure opening ceremony"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dignitaries_lighting.JPG"
+                  alt="Lamp lighting ceremony"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+
+              <!-- ── SEAMLESS DUPLICATE SET ── -->
+              <div class="mem-item">
+                <img
+                  src="./assets/2I0A3811.JPG"
+                  alt="Aakruthi event highlight"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dig_hodroom.JPG"
+                  alt="HoD room gathering"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dig_inside_bus.JPG"
+                  alt="Dignitaries inside bus"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dig_teach_inside.JPG"
+                  alt="Faculty inside session"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dignitaries_brochure_aopening.JPG"
+                  alt="Brochure opening ceremony"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/dignitaries_lighting.JPG"
+                  alt="Lamp lighting ceremony"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+            </div>
+            <!-- /col1 -->
+
+            <!-- ─────────────────────────────────────────
+                 COL 2 — scroll DOWN (35s)
+                 Images: event1, event2, floorart_2k25,
+                         fourthyears, girls_inside_isrobus,
+                         inside_bus_main
+                 ───────────────────────────────────────── -->
+            <div class="mem-col down" id="col2" data-dur="35">
+              <!-- ── ORIGINAL SET ── -->
+              <div class="mem-item">
+                <img
+                  src="./assets/event1.JPG"
+                  alt="Aakruthi event stage"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/event2.JPG"
+                  alt="Event crowd and energy"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/floorart_2k25.JPG"
+                  alt="Floor art Aakruthi 2K25"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/fourthyears.JPG"
+                  alt="Fourth year students"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/girls_inside_isrobus.JPG"
+                  alt="Students inside ISRO bus"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/inside_bus_main.JPG"
+                  alt="ISRO bus visit main shot"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+
+              <!-- ── SEAMLESS DUPLICATE SET ── -->
+              <div class="mem-item">
+                <img
+                  src="./assets/event1.JPG"
+                  alt="Aakruthi event stage"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/event2.JPG"
+                  alt="Event crowd and energy"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/floorart_2k25.JPG"
+                  alt="Floor art Aakruthi 2K25"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/fourthyears.JPG"
+                  alt="Fourth year students"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/girls_inside_isrobus.JPG"
+                  alt="Students inside ISRO bus"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/inside_bus_main.JPG"
+                  alt="ISRO bus visit main shot"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+            </div>
+            <!-- /col2 -->
+
+            <!-- ─────────────────────────────────────────
+                 COL 3 — scroll UP fast (22s)
+                 Images: inside_bus1, isro_bus_inside, last_4th_years,
+                         sir_explain1, sir_explain2, sir_explain3
+                 ───────────────────────────────────────── -->
+            <div class="mem-col up2" id="col3" data-dur="22">
+              <!-- ── ORIGINAL SET ── -->
+              <div class="mem-item">
+                <img
+                  src="./assets/inside_bus1.JPG"
+                  alt="Inside ISRO bus experience"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/isro_bus_inside.JPG"
+                  alt="ISRO mobile science bus"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/last_4th_years.JPG"
+                  alt="Final year farewell"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/sir_explain1.JPG"
+                  alt="Faculty explaining concepts"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/sir_explain2.JPG"
+                  alt="Technical session by faculty"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/sir_explain3.JPG"
+                  alt="Interactive demo session"
+                  loading="eager"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+
+              <!-- ── SEAMLESS DUPLICATE SET ── -->
+              <div class="mem-item">
+                <img
+                  src="./assets/inside_bus1.JPG"
+                  alt="Inside ISRO bus experience"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/isro_bus_inside.JPG"
+                  alt="ISRO mobile science bus"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/last_4th_years.JPG"
+                  alt="Final year farewell"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/sir_explain1.JPG"
+                  alt="Faculty explaining concepts"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/sir_explain2.JPG"
+                  alt="Technical session by faculty"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+              <div class="mem-item">
+                <img
+                  src="./assets/sir_explain3.JPG"
+                  alt="Interactive demo session"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="mem-error">
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                  >
+                    <rect x="3" y="3" width="18" height="18" rx="1.5" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21 15 16 10 5 21" /></svg
+                  >NO SIGNAL
+                </div>
+              </div>
+            </div>
+            <!-- /col3 -->
+          </div>
+          <!-- /memory-wall -->
+        </div>
+        <!-- /mem-wall-wrap -->
+
+        <!-- Submit CTA -->
+        <div
+          style="
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            margin-top: 2rem;
+          "
+        >
+          <div
+            style="
+              font-family: &quot;Share Tech Mono&quot;, monospace;
+              font-size: 0.65rem;
+              letter-spacing: 0.4em;
+              color: var(--text-muted);
+              margin-bottom: 1rem;
+            "
+          >
+            SUBMIT YOUR PHOTOS
+          </div>
+          <p
+            style="
+              font-size: 0.9rem;
+              color: var(--text-muted);
+              max-width: 30rem;
+              margin: 0 auto 1.5rem;
+            "
+          >
+            Attended a past Aakruthi? Share your photos with us and get featured
+            on this page!
+          </p>
+          <a
+            href="mailto:aakruthi2k26@osmania.ac.in"
+            class="btn-cyber btn-outline"
+            >📷 Submit Photos</a
+          >
+        </div>
+      </div>
+      <!-- /container -->
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-inner">
+          <div>
+            <div class="footer-brand">AAKRUTHI 2K26</div>
+            <div class="footer-sub">ECE DEPT · UCEOU · HYDERABAD</div>
+          </div>
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="memories.html">Memories</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="footer-socials">
+            <a
+              href="https://x.com/aakruthi_2026"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-social-link"
+              title="X (Twitter)"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622Zm-1.161 17.52h1.833L7.084 4.126H5.117Z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com/company/aakruthi-fest/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-social-link"
+              title="LinkedIn"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/aakruthi__2026?igsh=dWQxMG05NnBlemNm"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-social-link"
+              title="Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"
+                />
+              </svg>
+            </a>
+          </div>
+          <div class="footer-copy">© 2026 AAKRUTHI — Designed by SOP</div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <!-- ── IMAGE LOAD / BROKEN HANDLER + GALLERY CONTROLS ── -->
+    <script>
+      /* ── image states ── */
+      document.querySelectorAll(".mem-item img").forEach((img) => {
+        const item = img.closest(".mem-item");
+        const onLoad = () => {
+          img.classList.add("img-loaded");
+          item.classList.add("img-done");
+        };
+        const onError = () => {
+          item.classList.add("img-broken");
+        };
+        if (img.complete && img.naturalWidth > 0) onLoad();
+        else if (img.complete) onError();
+        else {
+          img.addEventListener("load", onLoad);
+          img.addEventListener("error", onError);
+        }
+      });
+
+      /* ── lightbox ── */
+      const allImgs = [
+        ...new Set(
+          [...document.querySelectorAll(".mem-item img")].map((i) => i.src),
+        ),
+      ];
+      const lb = document.getElementById("lightbox");
+      const lbImg = document.getElementById("lbImg");
+      const lbCounter = document.getElementById("lbCounter");
+      let lbIdx = 0;
+
+      function lbOpen(src) {
+        lbIdx = allImgs.indexOf(src);
+        if (lbIdx < 0) lbIdx = 0;
+        lbImg.src = allImgs[lbIdx];
+        lbCounter.textContent = `${String(lbIdx + 1).padStart(2, "0")} / ${String(allImgs.length).padStart(2, "0")}`;
+        lb.classList.add("open");
+      }
+      function lbStep(dir) {
+        lbIdx = (lbIdx + dir + allImgs.length) % allImgs.length;
+        lbImg.src = allImgs[lbIdx];
+        lbCounter.textContent = `${String(lbIdx + 1).padStart(2, "0")} / ${String(allImgs.length).padStart(2, "0")}`;
+      }
+
+      document.querySelectorAll(".mem-item").forEach((item) => {
+        item.addEventListener("click", () => {
+          const src = item.querySelector("img")?.src;
+          if (src) lbOpen(src);
+        });
+      });
+      document
+        .getElementById("lbClose")
+        .addEventListener("click", () => lb.classList.remove("open"));
+      document
+        .getElementById("lbPrev")
+        .addEventListener("click", () => lbStep(-1));
+      document
+        .getElementById("lbNext")
+        .addEventListener("click", () => lbStep(1));
+      lb.addEventListener("click", (e) => {
+        if (e.target === lb) lb.classList.remove("open");
+      });
+
+      /* ── gallery controls ── */
+      const wall = document.getElementById("memoryWall");
+      const cols = document.querySelectorAll(".mem-col");
+      const btnPP = document.getElementById("btnPlayPause");
+      const status = document.getElementById("galStatus");
+      const speedSldr = document.getElementById("speedSlider");
+      const speedVal = document.getElementById("speedVal");
+      const btnDef = document.getElementById("btnDefault");
+      const btnRev = document.getElementById("btnReverse");
+
+      const baseDurs = { col1: 30, col2: 35, col3: 22 };
+      let paused = false;
+      let speed = 1;
+      let reversed = false;
+
+      function applySpeed(s) {
+        speed = s;
+        speedVal.textContent = s + "×";
+        document.getElementById("col1").style.animationDuration =
+          baseDurs.col1 / s + "s";
+        document.getElementById("col2").style.animationDuration =
+          baseDurs.col2 / s + "s";
+        document.getElementById("col3").style.animationDuration =
+          baseDurs.col3 / s + "s";
+      }
+
+      function applyDirection(rev) {
+        reversed = rev;
+        const col1 = document.getElementById("col1");
+        const col2 = document.getElementById("col2");
+        const col3 = document.getElementById("col3");
+        if (rev) {
+          col1.style.animationName = "mem-scroll-down";
+          col2.style.animationName = "mem-scroll-up";
+          col3.style.animationName = "mem-scroll-down";
+        } else {
+          col1.style.animationName = "mem-scroll-up";
+          col2.style.animationName = "mem-scroll-down";
+          col3.style.animationName = "mem-scroll-up";
+        }
+      }
+
+      btnPP.addEventListener("click", () => {
+        paused = !paused;
+        wall.classList.toggle("gallery-paused", paused);
+        btnPP.textContent = paused ? "▶" : "⏸";
+        btnPP.classList.toggle("paused", paused);
+        status.textContent = paused ? "● PAUSED" : "● LIVE";
+        status.classList.toggle("is-paused", paused);
+      });
+
+      speedSldr.addEventListener("input", () =>
+        applySpeed(parseFloat(speedSldr.value)),
+      );
+
+      btnDef.addEventListener("click", () => {
+        applyDirection(false);
+        btnDef.classList.add("active");
+        btnRev.classList.remove("active");
+      });
+      btnRev.addEventListener("click", () => {
+        applyDirection(true);
+        btnRev.classList.add("active");
+        btnDef.classList.remove("active");
+      });
+
+      /* keyboard shortcuts */
+      document.addEventListener("keydown", (e) => {
+        if (lb.classList.contains("open")) {
+          if (e.key === "ArrowLeft") lbStep(-1);
+          if (e.key === "ArrowRight") lbStep(1);
+          if (e.key === "Escape") lb.classList.remove("open");
+          return;
+        }
+        if (e.key === " ") {
+          e.preventDefault();
+          btnPP.click();
+        }
+        if (e.key === "ArrowRight") {
+          speedSldr.value = Math.min(3, parseFloat(speedSldr.value) + 0.25);
+          applySpeed(parseFloat(speedSldr.value));
+        }
+        if (e.key === "ArrowLeft") {
+          speedSldr.value = Math.max(0.25, parseFloat(speedSldr.value) - 0.25);
+          applySpeed(parseFloat(speedSldr.value));
+        }
+      });
+
+      /* pause on hover */
+      wall.addEventListener("mouseenter", () => {
+        if (!paused)
+          cols.forEach((c) => (c.style.animationPlayState = "paused"));
+      });
+      wall.addEventListener("mouseleave", () => {
+        if (!paused)
+          cols.forEach((c) => (c.style.animationPlayState = "running"));
+      });
+    </script>
+  </body>
+</html>
