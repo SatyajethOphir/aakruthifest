@@ -19,7 +19,12 @@
   --glow-blue: 0 0 12px #0077aa40, 0 0 28px #0077aa20;
   --glow-gold: 0 0 12px #b8860b40, 0 0 28px #b8860b20;
 }
-
+@font-face {
+  font-family: 'Samarkan';
+  src: url('./assets/fonts/SamarkanOblique-BXew.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 *,
 *::before,
 *::after {
@@ -303,8 +308,8 @@ body::before {
   flex-direction: column;
 }
 .nav-title {
-  font-family: "Orbitron", sans-serif;
-  font-size: 1rem;
+  font-family: 'Samarkan', serif;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--text);
   letter-spacing: 0.15em;
@@ -693,6 +698,7 @@ main {
   letter-spacing: 0.05em;
 }
 .hero-title .line1 {
+  font-family: 'Samarkan', serif;
   display: block;
   color: var(--text);
 }
