@@ -3161,7 +3161,7 @@ footer::before {
     height: 28px;
   }
   .nav-title {
-    font-size: 0.7rem;
+    font-size: 1.7rem;
   }
   .nav-logo-img {
     height: 18px;
@@ -3176,3 +3176,4 @@ footer::before {
     display: none !important;
   }
 }
+
