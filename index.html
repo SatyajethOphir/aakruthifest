@@ -179,7 +179,7 @@
           <div class="hero-year glitch" data-text="2K26">2K26</div>
 
           <!-- tagline -->
-          <div class="hero-tagline-sub"> Dream Design Develop</div>
+          <div class="hero-tagline-sub">Dream Design Develop</div>
 
           <!-- divider -->
           <div class="hero-divider"></div>
@@ -267,7 +267,7 @@
             <div class="venue-box">
               <div class="venue-tag">📍 VENUE</div>
               <div class="venue-name">
-               Electronics and Communication Department, UCEOU
+                Electronics and Communication Department, UCEOU
               </div>
               <div class="venue-sub">
                 Amberpet, Hyderabad, Telangana — 500007
@@ -400,9 +400,6 @@
                 <a href="events.html" class="event-register">Register →</a>
               </div>
             </div>
-
-
-           
           </div>
           <!-- /events-grid -->
 
@@ -648,7 +645,6 @@
             </div>
           </div>
 
-     
           <!-- Research Capabilities -->
           <div class="caps-header reveal">
             <span class="caps-h-icon">🏗️</span>
@@ -788,6 +784,8 @@
     </main>
 
     <!-- ════ SCRIPTS ════ -->
+    <script src="script.js"></script>
+
     <script>
       (function () {
         /* ── LOADER ── */
@@ -835,22 +833,22 @@
         const magTitle = document.getElementById("magTitle");
 
         /* ── HAMBURGER ── */
-        const ham = document.getElementById("hamburger");
-        const mMnu = document.getElementById("mobileMenu");
-        ham.addEventListener("click", () => {
-          ham.classList.toggle("active");
-          mMnu.classList.toggle("active");
-          document.body.style.overflow = mMnu.classList.contains("active")
-            ? "hidden"
-            : "";
-        });
-        mMnu.querySelectorAll("a").forEach((a) =>
-          a.addEventListener("click", () => {
-            ham.classList.remove("active");
-            mMnu.classList.remove("active");
-            document.body.style.overflow = "";
-          }),
-        );
+        // const ham = document.getElementById("hamburger");
+        // const mMnu = document.getElementById("mobileMenu");
+        // ham.addEventListener("click", () => {
+        //   ham.classList.toggle("active");
+        //   mMnu.classList.toggle("active");
+        //   document.body.style.overflow = mMnu.classList.contains("active")
+        //     ? "hidden"
+        //     : "";
+        // });
+        // mMnu.querySelectorAll("a").forEach((a) =>
+        //   a.addEventListener("click", () => {
+        //     ham.classList.remove("active");
+        //     mMnu.classList.remove("active");
+        //     document.body.style.overflow = "";
+        //   }),
+        // );
 
         /* ── COUNTDOWN ── */
         const target = new Date("2026-03-12T09:00:00+05:30").getTime();
@@ -916,6 +914,5 @@
         }
       })();
     </script>
-    <script src="script.js"></script>
   </body>
 </html>
