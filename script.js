@@ -1,4 +1,4 @@
-// script.js — Aakruthi 2K26
+// script.js — Aakruthi 2K26 (Mobile-Optimised)
 
 // ─── BACKGROUND: Deep Space Galaxy Environment ───────────────────
 (function initBackground() {
@@ -38,7 +38,8 @@
     );
   }
 
-  const STAR_COUNT = isMobile ? 180 : 340;
+  // ── Reduced counts for mobile ──
+  const STAR_COUNT = isMobile ? 100 : 340;
   const stars = [];
   for (let i = 0; i < STAR_COUNT; i++) {
     const mag = Math.random();
@@ -61,7 +62,7 @@
     });
   }
 
-  const NEBULA_COUNT = isMobile ? 3 : 5;
+  const NEBULA_COUNT = isMobile ? 2 : 5;
   const nebulae = [];
   const NEBULA_PALETTES = [
     ["#ff008888", "#b800ff44", "#00cfff22"],
@@ -108,8 +109,8 @@
     "#3dff22",
     "#ffffff",
   ];
-  const PARTICLE_COUNT = isMobile ? 28 : 55;
-  const CONNECT_DIST = isMobile ? 90 : 120;
+  const PARTICLE_COUNT = isMobile ? 15 : 55;
+  const CONNECT_DIST = isMobile ? 80 : 120;
   const CONNECT_SQ = CONNECT_DIST * CONNECT_DIST;
 
   class EnergyParticle {
@@ -192,10 +193,9 @@
     }
     draw() {
       if (!this.active || this.alpha <= 0) return;
-      const tailX =
-        this.x - this.vx * (this.len / Math.hypot(this.vx, this.vy));
-      const tailY =
-        this.y - this.vy * (this.len / Math.hypot(this.vx, this.vy));
+      const hypot = Math.hypot(this.vx, this.vy);
+      const tailX = this.x - this.vx * (this.len / hypot);
+      const tailY = this.y - this.vy * (this.len / hypot);
       const grad = ctx.createLinearGradient(tailX, tailY, this.x, this.y);
       grad.addColorStop(0, "rgba(255,255,255,0)");
       grad.addColorStop(0.7, `rgba(255,255,255,${this.alpha * 0.4})`);
@@ -229,9 +229,10 @@
     return s;
   });
   let shooterTimer = 0;
-  const SHOOTER_INTERVAL = isMobile ? 420 : 280;
+  const SHOOTER_INTERVAL = isMobile ? 600 : 280;
 
-  const DUST_COUNT = isMobile ? 12 : 22;
+  // ── Skip dust entirely on mobile ──
+  const DUST_COUNT = isMobile ? 0 : 22;
   const dust = [];
   for (let i = 0; i < DUST_COUNT; i++) {
     dust.push({
@@ -319,7 +320,8 @@
       const twinkle = 0.75 + Math.sin(s.twinklePhase) * 0.25;
       ctx.globalAlpha = s.alpha * twinkle;
       ctx.shadowColor = s.color;
-      ctx.shadowBlur = s.r > 0.8 ? 5 : 2;
+      // Reduce shadow blur on mobile for perf
+      ctx.shadowBlur = isMobile ? 0 : s.r > 0.8 ? 5 : 2;
       ctx.fillStyle = s.color;
       ctx.beginPath();
       ctx.arc(
@@ -365,7 +367,7 @@
           ctx.globalAlpha = t * t * 0.22;
           ctx.strokeStyle = a.color;
           ctx.shadowColor = a.color;
-          ctx.shadowBlur = 4;
+          ctx.shadowBlur = isMobile ? 0 : 4;
           ctx.beginPath();
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -376,24 +378,38 @@
   }
 
   let animId;
+  // ── Frame throttle: skip odd frames on mobile (~30fps) ──
+  let frameCount = 0;
+
   function loop() {
+    frameCount++;
+    // On mobile, only render every 2nd frame
+    if (isMobile && frameCount % 2 !== 0) {
+      animId = requestAnimationFrame(loop);
+      return;
+    }
+
     frame++;
     mouseX += (targetMouseX - mouseX) * 0.04;
     mouseY += (targetMouseY - mouseY) * 0.04;
     const px = mouseX - W / 2,
       py = mouseY - H / 2;
+
     ctx.clearRect(0, 0, W, H);
     ctx.shadowBlur = 0;
+
     drawGalaxyCore(px, py);
     drawNebulae(px, py);
     drawStars(px, py);
-    drawDust(px, py);
+    if (!isMobile) drawDust(px, py);
     drawEnergyConnections();
+
     ctx.shadowBlur = 0;
     energyParticles.forEach((p) => {
       p.update();
       p.draw();
     });
+
     shooterTimer++;
     if (shooterTimer >= SHOOTER_INTERVAL) {
       for (const s of shooters) {
@@ -409,6 +425,7 @@
       s.update();
       s.draw();
     }
+
     ctx.globalAlpha = 1;
     ctx.shadowBlur = 0;
     animId = requestAnimationFrame(loop);
@@ -442,12 +459,13 @@
 })();
 
 // ═══════════════════════════════════════════════════════════════════
-//  3D CARD POP — True perspective tilt with visible neon side walls
-//  Pure vanilla JS: injects its own <style>, builds wall elements,
-//  and drives mouse-tracked rotation via rAF lerp loop.
+//  3D CARD POP — Disabled on touch/mobile for performance
 // ═══════════════════════════════════════════════════════════════════
 (function init3DCards() {
-  // ── 1. Inject all required CSS programmatically ──────────────────
+  const isTouchDevice =
+    navigator.maxTouchPoints > 0 ||
+    window.matchMedia("(max-width: 768px)").matches;
+
   const css = `
     .events-grid {
       perspective: 1100px;
@@ -458,9 +476,7 @@
       transition: box-shadow 0.35s ease, border-color 0.35s ease;
       position: relative;
       overflow: visible !important;
-      will-change: transform;
     }
-    /* Scanline overlay on card face */
     .event-card .card-face-overlay {
       position: absolute;
       inset: 0;
@@ -476,7 +492,6 @@
     }
     .event-card:hover .card-face-overlay { opacity: 1; }
 
-    /* Glint sweep */
     .event-card .card-glint {
       position: absolute;
       inset: 0;
@@ -498,7 +513,6 @@
       background-position: -50% 0;
     }
 
-    /* Side wall base */
     .card-wall {
       position: absolute;
       pointer-events: none;
@@ -508,68 +522,42 @@
       transition: opacity 0.08s linear;
       overflow: hidden;
     }
-
-    /* Right wall (cyan) */
     .card-wall-right {
       top: 0; right: 0;
       height: 100%; width: 44px;
       transform-origin: right center;
       transform: rotateY(90deg);
-      background: linear-gradient(to right,
-        rgba(0,245,255,0.0) 0%,
-        rgba(0,245,255,0.12) 50%,
-        rgba(0,245,255,0.30) 100%
-      );
+      background: linear-gradient(to right, rgba(0,245,255,0.0) 0%, rgba(0,245,255,0.12) 50%, rgba(0,245,255,0.30) 100%);
       border-right: 2px solid rgba(0,245,255,0.95);
       box-shadow: inset -10px 0 24px rgba(0,245,255,0.25), 6px 0 40px rgba(0,245,255,0.55);
     }
-
-    /* Left wall (magenta) */
     .card-wall-left {
       top: 0; left: 0;
       height: 100%; width: 44px;
       transform-origin: left center;
       transform: rotateY(-90deg);
-      background: linear-gradient(to left,
-        rgba(255,0,85,0.0) 0%,
-        rgba(255,0,85,0.12) 50%,
-        rgba(255,0,85,0.28) 100%
-      );
+      background: linear-gradient(to left, rgba(255,0,85,0.0) 0%, rgba(255,0,85,0.12) 50%, rgba(255,0,85,0.28) 100%);
       border-left: 2px solid rgba(255,0,85,0.9);
       box-shadow: inset 10px 0 24px rgba(255,0,85,0.22), -6px 0 40px rgba(255,0,85,0.5);
     }
-
-    /* Bottom wall (acid yellow) */
     .card-wall-bottom {
       bottom: 0; left: 0;
       width: 100%; height: 44px;
       transform-origin: center bottom;
       transform: rotateX(-90deg);
-      background: linear-gradient(to bottom,
-        rgba(232,255,0,0.0) 0%,
-        rgba(232,255,0,0.12) 50%,
-        rgba(232,255,0,0.28) 100%
-      );
+      background: linear-gradient(to bottom, rgba(232,255,0,0.0) 0%, rgba(232,255,0,0.12) 50%, rgba(232,255,0,0.28) 100%);
       border-bottom: 2px solid rgba(232,255,0,0.88);
       box-shadow: inset 0 10px 24px rgba(232,255,0,0.18), 0 8px 40px rgba(232,255,0,0.45);
     }
-
-    /* Top wall (soft cyan) */
     .card-wall-top {
       top: 0; left: 0;
       width: 100%; height: 44px;
       transform-origin: center top;
       transform: rotateX(90deg);
-      background: linear-gradient(to top,
-        rgba(0,245,255,0.0) 0%,
-        rgba(0,245,255,0.08) 60%,
-        rgba(0,245,255,0.18) 100%
-      );
+      background: linear-gradient(to top, rgba(0,245,255,0.0) 0%, rgba(0,245,255,0.08) 60%, rgba(0,245,255,0.18) 100%);
       border-top: 1px solid rgba(0,245,255,0.5);
       box-shadow: inset 0 -6px 18px rgba(0,245,255,0.12);
     }
-
-    /* Corner brackets */
     .card-corner-el {
       position: absolute;
       width: 16px; height: 16px;
@@ -589,13 +577,10 @@
     .card-corner-el.cc-tr { top:6px; right:6px; border-width:2px 2px 0 0; animation-delay:0.55s !important; }
     .card-corner-el.cc-bl { bottom:6px; left:6px; border-width:0 0 2px 2px; animation-delay:0.28s !important; }
     .card-corner-el.cc-br { bottom:6px; right:6px; border-width:0 2px 2px 0; animation-delay:0.82s !important; }
-
     @keyframes ccPulse {
       0%,100% { border-color:#00f5ff; box-shadow:0 0 8px #00f5ff, 0 0 22px rgba(0,245,255,0.6); }
       50%      { border-color:#ff0055; box-shadow:0 0 8px #ff0055, 0 0 22px rgba(255,0,85,0.6); }
     }
-
-    /* Hover glow on the card face */
     .event-card:hover {
       border-color: rgba(0,245,255,0.75) !important;
       box-shadow:
@@ -609,17 +594,20 @@
       text-shadow: 0 0 8px #00f5ff, 0 0 22px rgba(0,245,255,0.6), 0 0 55px rgba(0,245,255,0.25);
     }
     .event-card:hover .event-img {
-      filter: saturate(1.3) brightness(1.08) hue-rotate(0deg);
+      filter: saturate(1.3) brightness(1.08);
       transform: scale(1.04);
+    }
+    /* On touch devices: skip will-change and 3D layers */
+    @media (max-width: 768px) {
+      .event-card { transform-style: flat !important; }
+      .card-wall { display: none !important; }
     }
   `;
   const styleTag = document.createElement("style");
   styleTag.textContent = css;
   document.head.appendChild(styleTag);
 
-  // ── 2. Build DOM elements inside each card ────────────────────────
   function buildCard(card) {
-    // Overlays on the face
     const overlay = document.createElement("div");
     overlay.className = "card-face-overlay";
     card.appendChild(overlay);
@@ -628,14 +616,15 @@
     glint.className = "card-glint";
     card.appendChild(glint);
 
-    // 4 side walls
-    ["right", "left", "bottom", "top"].forEach((side) => {
-      const wall = document.createElement("div");
-      wall.className = `card-wall card-wall-${side}`;
-      card.appendChild(wall);
-    });
+    // Only build walls on desktop
+    if (!isTouchDevice) {
+      ["right", "left", "bottom", "top"].forEach((side) => {
+        const wall = document.createElement("div");
+        wall.className = `card-wall card-wall-${side}`;
+        card.appendChild(wall);
+      });
+    }
 
-    // 4 corner brackets
     ["tl", "tr", "bl", "br"].forEach((pos) => {
       const c = document.createElement("div");
       c.className = `card-corner-el cc-${pos}`;
@@ -643,16 +632,18 @@
     });
   }
 
-  // ── 3. Mouse-tracking tilt with lerp rAF loop ────────────────────
-  const TILT = 15; // max tilt degrees
-  const LIFT = 42; // translateZ on hover (px)
+  const TILT = 14;
+  const LIFT = 38;
 
   function attachTilt(card) {
+    // Skip rAF tilt loop entirely on touch devices
+    if (isTouchDevice) return;
+
     let isHover = false;
     let tRX = 0,
-      tRY = 0; // target rotation
+      tRY = 0;
     let cRX = 0,
-      cRY = 0; // current rotation (lerped)
+      cRY = 0;
     let raf = null;
 
     const walls = {
@@ -667,23 +658,14 @@
     }
 
     function tick() {
-      // Lerp toward target
       cRX = lerp(cRX, tRX, 0.11);
       cRY = lerp(cRY, tRY, 0.11);
-
       const tz = isHover ? LIFT : 0;
       const scale = isHover ? 1.03 : 1.0;
-
       card.style.transform = `rotateX(${cRX.toFixed(3)}deg) rotateY(${cRY.toFixed(3)}deg) translateZ(${tz}px) scale(${scale})`;
 
-      // Drive wall opacity based on tilt direction
-      // RY > 0 = tilted right  → expose LEFT wall
-      // RY < 0 = tilted left   → expose RIGHT wall
-      // RX > 0 = tilted back   → expose BOTTOM wall
-      // RX < 0 = tilted forward→ expose TOP wall
-      const ryN = cRY / TILT; // -1 to +1
+      const ryN = cRY / TILT;
       const rxN = cRX / TILT;
-
       const minVis = isHover ? 0.08 : 0;
       walls.right.style.opacity = Math.max(minVis, -ryN * 0.95).toFixed(3);
       walls.left.style.opacity = Math.max(minVis, ryN * 0.95).toFixed(3);
@@ -696,7 +678,6 @@
       if (stillMoving) {
         raf = requestAnimationFrame(tick);
       } else {
-        // Fully settled
         card.style.transform = "";
         walls.right.style.opacity = "0";
         walls.left.style.opacity = "0";
@@ -711,33 +692,24 @@
       const r = card.getBoundingClientRect();
       const cx = r.left + r.width / 2;
       const cy = r.top + r.height / 2;
-      const dx = (e.clientX - cx) / (r.width / 2); // -1 to 1
-      const dy = (e.clientY - cy) / (r.height / 2);
-      tRX = -dy * TILT;
-      tRY = dx * TILT;
-      if (!raf) {
-        raf = requestAnimationFrame(tick);
-      }
+      tRX = -((e.clientY - cy) / (r.height / 2)) * TILT;
+      tRY = ((e.clientX - cx) / (r.width / 2)) * TILT;
+      if (!raf) raf = requestAnimationFrame(tick);
     });
 
     card.addEventListener("mouseenter", () => {
       isHover = true;
-      if (!raf) {
-        raf = requestAnimationFrame(tick);
-      }
+      if (!raf) raf = requestAnimationFrame(tick);
     });
 
     card.addEventListener("mouseleave", () => {
       isHover = false;
       tRX = 0;
       tRY = 0;
-      if (!raf) {
-        raf = requestAnimationFrame(tick);
-      }
+      if (!raf) raf = requestAnimationFrame(tick);
     });
   }
 
-  // ── 4. Init on DOM ready ──────────────────────────────────────────
   function initAll() {
     document.querySelectorAll(".event-card").forEach((card) => {
       buildCard(card);
@@ -754,7 +726,6 @@
 
 // ─── MAIN DOMContentLoaded ────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
-  // ─── LOADER ──────────────────────────────────────
   const loader = document.getElementById("loader");
   if (loader) {
     setTimeout(() => {
@@ -763,7 +734,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1400);
   }
 
-  // ─── CUSTOM CURSOR ───────────────────────────────
   const dot = document.getElementById("cursorDot");
   const ring = document.getElementById("cursorRing");
   const isTouchDevice = navigator.maxTouchPoints > 0;
@@ -820,7 +790,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ring.style.display = "none";
   }
 
-  // ─── HAMBURGER ───────────────────────────────────
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobileMenu");
   if (hamburger && mobileMenu) {
@@ -845,7 +814,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ─── COUNTDOWN ───────────────────────────────────
   const targetDate = new Date("2026-03-12T09:00:00").getTime();
   const daysEl = document.getElementById("cd-days");
   const hoursEl = document.getElementById("cd-hours");
@@ -880,7 +848,6 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(updateCountdown, 1000);
   }
 
-  // ─── SCROLL REVEAL ───────────────────────────────
   function triggerReveal() {
     const revealEls = document.querySelectorAll(".reveal");
     if (!revealEls.length) return;
@@ -911,7 +878,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, 1200);
 
-  // ─── GLITCH ──────────────────────────────────────
   document.querySelectorAll(".glitch").forEach((el) => {
     setInterval(
       () => {
@@ -1125,4 +1091,4 @@ document.addEventListener("DOMContentLoaded", () => {
     },
     { passive: true },
   );
-}); // end DOMContentLoaded
+});
