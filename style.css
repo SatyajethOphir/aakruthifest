@@ -1355,7 +1355,7 @@ main {
   position: relative;
   box-shadow: var(--glow-pink);
   transition: box-shadow 0.2s;
-  text-align: left;
+  text-align: center;
 }
 
 .venue-box:hover {
