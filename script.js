@@ -23,7 +23,6 @@
   let W = (canvas.width = window.innerWidth);
   let H = (canvas.height = window.innerHeight);
 
-  // ── Mouse parallax tracking ──────────────────────────────────
   let mouseX = W / 2;
   let mouseY = H / 2;
   let targetMouseX = W / 2;
@@ -39,43 +38,37 @@
     );
   }
 
-  // ─────────────────────────────────────────────────────────────
-  //  LAYER 1 — Distant static starfield (tiny, dense, barely moving)
-  // ─────────────────────────────────────────────────────────────
   const STAR_COUNT = isMobile ? 180 : 340;
   const stars = [];
   for (let i = 0; i < STAR_COUNT; i++) {
-    const mag = Math.random(); // 0 = far dim, 1 = near bright
+    const mag = Math.random();
     stars.push({
       x: Math.random() * W,
       y: Math.random() * H,
       r: mag * 1.1 + 0.15,
       alpha: mag * 0.55 + 0.08,
-      parallax: mag * 0.018 + 0.002, // subtle depth offset
+      parallax: mag * 0.018 + 0.002,
       twinkleSpeed: Math.random() * 0.025 + 0.005,
       twinklePhase: Math.random() * Math.PI * 2,
       color: (() => {
         const roll = Math.random();
         if (roll < 0.55) return "#ffffff";
-        if (roll < 0.7) return "#b0d4ff"; // blue-white
-        if (roll < 0.82) return "#ffd8a8"; // warm yellow
-        if (roll < 0.91) return "#ffb3c6"; // pinkish
-        return "#d0aaff"; // purple
+        if (roll < 0.7) return "#b0d4ff";
+        if (roll < 0.82) return "#ffd8a8";
+        if (roll < 0.91) return "#ffb3c6";
+        return "#d0aaff";
       })(),
     });
   }
 
-  // ─────────────────────────────────────────────────────────────
-  //  LAYER 2 — Nebula clouds (soft radial blobs, slow drift)
-  // ─────────────────────────────────────────────────────────────
   const NEBULA_COUNT = isMobile ? 3 : 5;
   const nebulae = [];
   const NEBULA_PALETTES = [
-    ["#ff008888", "#b800ff44", "#00cfff22"], // pink-purple-cyan
-    ["#b800ff66", "#ff008844", "#0044aa22"], // purple-pink-deep blue
-    ["#00cfff55", "#3dff2222", "#b800ff33"], // cyan-green-purple
-    ["#ff5c0044", "#ff008866", "#b800ff22"], // orange-pink-purple
-    ["#3dff2233", "#00cfff44", "#ffffff11"], // green-cyan-white
+    ["#ff008888", "#b800ff44", "#00cfff22"],
+    ["#b800ff66", "#ff008844", "#0044aa22"],
+    ["#00cfff55", "#3dff2222", "#b800ff33"],
+    ["#ff5c0044", "#ff008866", "#b800ff22"],
+    ["#3dff2233", "#00cfff44", "#ffffff11"],
   ];
   for (let i = 0; i < NEBULA_COUNT; i++) {
     const palette = NEBULA_PALETTES[i % NEBULA_PALETTES.length];
@@ -96,21 +89,15 @@
     });
   }
 
-  // ─────────────────────────────────────────────────────────────
-  //  LAYER 3 — Galaxy core / milky way band
-  // ─────────────────────────────────────────────────────────────
   const galaxyCore = {
     x: W * 0.5,
     y: H * 0.45,
     radiusX: W * (isMobile ? 0.28 : 0.32),
     radiusY: H * (isMobile ? 0.09 : 0.07),
-    rotation: -0.22, // slight tilt
+    rotation: -0.22,
     alpha: isMobile ? 0.06 : 0.1,
   };
 
-  // ─────────────────────────────────────────────────────────────
-  //  LAYER 4 — Floating energy particles (mid-layer, colour-coded)
-  // ─────────────────────────────────────────────────────────────
   const PARTICLE_COLORS = [
     "#0077cc",
     "#c200b8",
@@ -158,22 +145,17 @@
       ctx.fill();
     }
   }
-
   const energyParticles = Array.from(
     { length: PARTICLE_COUNT },
     () => new EnergyParticle(true),
   );
 
-  // ─────────────────────────────────────────────────────────────
-  //  LAYER 5 — Shooting stars (rare, dramatic)
-  // ─────────────────────────────────────────────────────────────
   const MAX_SHOOTERS = isMobile ? 1 : 2;
   class ShootingStar {
     constructor() {
       this.spawn();
     }
     spawn() {
-      // spawn off top or left edge
       const edge = Math.random();
       if (edge < 0.6) {
         this.x = Math.random() * W;
@@ -199,16 +181,14 @@
       if (!this.active) return;
       this.life++;
       const t = this.life / this.maxLife;
-      // fade in then out
       this.alpha =
         t < 0.2
           ? (t / 0.2) * this.maxAlpha
           : this.maxAlpha * (1 - (t - 0.2) / 0.8);
       this.x += this.vx;
       this.y += this.vy;
-      if (this.life >= this.maxLife || this.x > W + 50 || this.y > H + 50) {
+      if (this.life >= this.maxLife || this.x > W + 50 || this.y > H + 50)
         this.active = false;
-      }
     }
     draw() {
       if (!this.active || this.alpha <= 0) return;
@@ -217,17 +197,14 @@
       const tailY =
         this.y - this.vy * (this.len / Math.hypot(this.vx, this.vy));
       const grad = ctx.createLinearGradient(tailX, tailY, this.x, this.y);
-      grad.addColorStop(0, `rgba(255,255,255,0)`);
+      grad.addColorStop(0, "rgba(255,255,255,0)");
       grad.addColorStop(0.7, `rgba(255,255,255,${this.alpha * 0.4})`);
       grad.addColorStop(
         1,
-        this.color
-          .replace(")", `,${this.alpha})`)
-          .replace("rgb", "rgba")
-          .replace("#ffffff", `rgba(255,255,255,${this.alpha})`)
-          .replace("#00cfff", `rgba(0,207,255,${this.alpha})`),
+        this.color === "#ffffff"
+          ? `rgba(255,255,255,${this.alpha})`
+          : `rgba(0,207,255,${this.alpha})`,
       );
-
       ctx.globalAlpha = 1;
       ctx.shadowColor = this.color;
       ctx.shadowBlur = 8;
@@ -238,8 +215,6 @@
       ctx.moveTo(tailX, tailY);
       ctx.lineTo(this.x, this.y);
       ctx.stroke();
-
-      // bright head dot
       ctx.globalAlpha = this.alpha;
       ctx.fillStyle = "#ffffff";
       ctx.shadowBlur = 12;
@@ -248,18 +223,14 @@
       ctx.fill();
     }
   }
-
   const shooters = Array.from({ length: MAX_SHOOTERS }, () => {
     const s = new ShootingStar();
-    s.active = false; // start inactive — will trigger via timer
+    s.active = false;
     return s;
   });
   let shooterTimer = 0;
-  const SHOOTER_INTERVAL = isMobile ? 420 : 280; // frames between spawns
+  const SHOOTER_INTERVAL = isMobile ? 420 : 280;
 
-  // ─────────────────────────────────────────────────────────────
-  //  LAYER 6 — Dust / comet trails (very faint, large, slow)
-  // ─────────────────────────────────────────────────────────────
   const DUST_COUNT = isMobile ? 12 : 22;
   const dust = [];
   for (let i = 0; i < DUST_COUNT; i++) {
@@ -274,25 +245,19 @@
     });
   }
 
-  // ─────────────────────────────────────────────────────────────
-  //  DRAW HELPERS
-  // ─────────────────────────────────────────────────────────────
   let frame = 0;
 
   function drawGalaxyCore(px, py) {
     ctx.save();
-    const cx = galaxyCore.x + px * 0.015;
-    const cy = galaxyCore.y + py * 0.015;
+    const cx = galaxyCore.x + px * 0.015,
+      cy = galaxyCore.y + py * 0.015;
     ctx.translate(cx, cy);
     ctx.rotate(galaxyCore.rotation);
-
-    // Outer diffuse halo
     const halo = ctx.createRadialGradient(0, 0, 0, 0, 0, galaxyCore.radiusX);
-    halo.addColorStop(0.0, `rgba(180, 120, 255, ${galaxyCore.alpha * 0.9})`);
-    halo.addColorStop(0.25, `rgba(100, 60, 200, ${galaxyCore.alpha * 0.7})`);
-    halo.addColorStop(0.55, `rgba(40, 10, 80, ${galaxyCore.alpha * 0.4})`);
-    halo.addColorStop(1.0, `rgba(0, 0, 0, 0)`);
-
+    halo.addColorStop(0.0, `rgba(180,120,255,${galaxyCore.alpha * 0.9})`);
+    halo.addColorStop(0.25, `rgba(100,60,200,${galaxyCore.alpha * 0.7})`);
+    halo.addColorStop(0.55, `rgba(40,10,80,${galaxyCore.alpha * 0.4})`);
+    halo.addColorStop(1.0, "rgba(0,0,0,0)");
     ctx.globalAlpha = 1;
     ctx.shadowBlur = 0;
     ctx.scale(1, galaxyCore.radiusY / galaxyCore.radiusX);
@@ -300,9 +265,7 @@
     ctx.beginPath();
     ctx.arc(0, 0, galaxyCore.radiusX, 0, Math.PI * 2);
     ctx.fill();
-
-    // Bright central nucleus
-    ctx.scale(1, galaxyCore.radiusX / galaxyCore.radiusY); // undo y scale
+    ctx.scale(1, galaxyCore.radiusX / galaxyCore.radiusY);
     const nucleus = ctx.createRadialGradient(
       0,
       0,
@@ -311,14 +274,13 @@
       0,
       galaxyCore.radiusX * 0.12,
     );
-    nucleus.addColorStop(0, `rgba(255, 230, 255, ${galaxyCore.alpha * 3})`);
-    nucleus.addColorStop(0.4, `rgba(200, 140, 255, ${galaxyCore.alpha * 1.5})`);
-    nucleus.addColorStop(1, `rgba(0, 0, 0, 0)`);
+    nucleus.addColorStop(0, `rgba(255,230,255,${galaxyCore.alpha * 3})`);
+    nucleus.addColorStop(0.4, `rgba(200,140,255,${galaxyCore.alpha * 1.5})`);
+    nucleus.addColorStop(1, "rgba(0,0,0,0)");
     ctx.fillStyle = nucleus;
     ctx.beginPath();
     ctx.arc(0, 0, galaxyCore.radiusX * 0.12, 0, Math.PI * 2);
     ctx.fill();
-
     ctx.restore();
   }
 
@@ -332,25 +294,16 @@
       if (n.x > W + n.rx) n.x = -n.rx;
       if (n.y < -n.ry) n.y = H + n.ry;
       if (n.y > H + n.ry) n.y = -n.ry;
-
       const pulse = 1 + Math.sin(n.pulsePhase) * 0.08;
-      const drawX = n.x + px * n.parallax;
-      const drawY = n.y + py * n.parallax;
-
       ctx.save();
-      ctx.translate(drawX, drawY);
+      ctx.translate(n.x + px * n.parallax, n.y + py * n.parallax);
       ctx.rotate(n.rotation);
       ctx.scale(1, n.ry / n.rx);
-
-      const alphaBoost = n.alpha * pulse;
       const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, n.rx * pulse);
-      for (let ci = 0; ci < n.colors.length; ci++) {
-        const stop = ci / (n.colors.length - 1);
-        grad.addColorStop(stop * 0.7, n.colors[ci]);
-      }
+      for (let ci = 0; ci < n.colors.length; ci++)
+        grad.addColorStop((ci / (n.colors.length - 1)) * 0.7, n.colors[ci]);
       grad.addColorStop(1, "rgba(0,0,0,0)");
-
-      ctx.globalAlpha = alphaBoost;
+      ctx.globalAlpha = n.alpha * pulse;
       ctx.shadowBlur = 0;
       ctx.fillStyle = grad;
       ctx.beginPath();
@@ -364,15 +317,18 @@
     for (const s of stars) {
       s.twinklePhase += s.twinkleSpeed;
       const twinkle = 0.75 + Math.sin(s.twinklePhase) * 0.25;
-      const drawX = s.x + px * s.parallax;
-      const drawY = s.y + py * s.parallax;
-
       ctx.globalAlpha = s.alpha * twinkle;
       ctx.shadowColor = s.color;
       ctx.shadowBlur = s.r > 0.8 ? 5 : 2;
       ctx.fillStyle = s.color;
       ctx.beginPath();
-      ctx.arc(drawX, drawY, s.r * (0.85 + twinkle * 0.15), 0, Math.PI * 2);
+      ctx.arc(
+        s.x + px * s.parallax,
+        s.y + py * s.parallax,
+        s.r * (0.85 + twinkle * 0.15),
+        0,
+        Math.PI * 2,
+      );
       ctx.fill();
     }
   }
@@ -402,8 +358,8 @@
         const a = energyParticles[i],
           b = energyParticles[j];
         const dx = a.x - b.x,
-          dy = a.y - b.y;
-        const dSq = dx * dx + dy * dy;
+          dy = a.y - b.y,
+          dSq = dx * dx + dy * dy;
         if (dSq < CONNECT_SQ) {
           const t = 1 - Math.sqrt(dSq) / CONNECT_DIST;
           ctx.globalAlpha = t * t * 0.22;
@@ -419,47 +375,25 @@
     }
   }
 
-  // ─────────────────────────────────────────────────────────────
-  //  MAIN RENDER LOOP
-  // ─────────────────────────────────────────────────────────────
   let animId;
-
   function loop() {
     frame++;
-
-    // Smooth mouse parallax
     mouseX += (targetMouseX - mouseX) * 0.04;
     mouseY += (targetMouseY - mouseY) * 0.04;
-    const px = mouseX - W / 2; // offset from centre
-    const py = mouseY - H / 2;
-
+    const px = mouseX - W / 2,
+      py = mouseY - H / 2;
     ctx.clearRect(0, 0, W, H);
     ctx.shadowBlur = 0;
-
-    // ── Layer order (back → front) ──
-    // 1. Galaxy band
     drawGalaxyCore(px, py);
-
-    // 2. Nebula clouds
     drawNebulae(px, py);
-
-    // 3. Distant starfield
     drawStars(px, py);
-
-    // 4. Dust particles
     drawDust(px, py);
-
-    // 5. Energy particle connections
     drawEnergyConnections();
-
-    // 6. Energy particles
     ctx.shadowBlur = 0;
     energyParticles.forEach((p) => {
       p.update();
       p.draw();
     });
-
-    // 7. Shooting stars
     shooterTimer++;
     if (shooterTimer >= SHOOTER_INTERVAL) {
       for (const s of shooters) {
@@ -475,15 +409,11 @@
       s.update();
       s.draw();
     }
-
     ctx.globalAlpha = 1;
     ctx.shadowBlur = 0;
     animId = requestAnimationFrame(loop);
   }
 
-  // ─────────────────────────────────────────────────────────────
-  //  RESIZE
-  // ─────────────────────────────────────────────────────────────
   let resizeTimer;
   window.addEventListener(
     "resize",
@@ -494,7 +424,6 @@
         H = canvas.height = window.innerHeight;
         mouseX = targetMouseX = W / 2;
         mouseY = targetMouseY = H / 2;
-        // Reposition galaxy core
         galaxyCore.x = W * 0.5;
         galaxyCore.y = H * 0.45;
         galaxyCore.radiusX = W * (isMobile ? 0.28 : 0.32);
@@ -504,15 +433,323 @@
     { passive: true },
   );
 
-  // ─────────────────────────────────────────────────────────────
-  //  VISIBILITY — pause when tab hidden
-  // ─────────────────────────────────────────────────────────────
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) cancelAnimationFrame(animId);
     else loop();
   });
 
   loop();
+})();
+
+// ═══════════════════════════════════════════════════════════════════
+//  3D CARD POP — True perspective tilt with visible neon side walls
+//  Pure vanilla JS: injects its own <style>, builds wall elements,
+//  and drives mouse-tracked rotation via rAF lerp loop.
+// ═══════════════════════════════════════════════════════════════════
+(function init3DCards() {
+  // ── 1. Inject all required CSS programmatically ──────────────────
+  const css = `
+    .events-grid {
+      perspective: 1100px;
+      perspective-origin: 50% 40%;
+    }
+    .event-card {
+      transform-style: preserve-3d;
+      transition: box-shadow 0.35s ease, border-color 0.35s ease;
+      position: relative;
+      overflow: visible !important;
+      will-change: transform;
+    }
+    /* Scanline overlay on card face */
+    .event-card .card-face-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 8;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent, transparent 3px,
+        rgba(0,245,255,0.018) 3px, rgba(0,245,255,0.018) 4px
+      );
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .event-card:hover .card-face-overlay { opacity: 1; }
+
+    /* Glint sweep */
+    .event-card .card-glint {
+      position: absolute;
+      inset: 0;
+      z-index: 9;
+      pointer-events: none;
+      background: linear-gradient(
+        125deg,
+        transparent 0%, transparent 30%,
+        rgba(0,245,255,0.07) 47%, rgba(255,255,255,0.13) 50%, rgba(0,245,255,0.05) 53%,
+        transparent 70%, transparent 100%
+      );
+      background-size: 250% 100%;
+      background-position: 200% 0;
+      opacity: 0;
+      transition: opacity 0.2s, background-position 0.55s ease;
+    }
+    .event-card:hover .card-glint {
+      opacity: 1;
+      background-position: -50% 0;
+    }
+
+    /* Side wall base */
+    .card-wall {
+      position: absolute;
+      pointer-events: none;
+      opacity: 0;
+      z-index: -1;
+      transform-style: preserve-3d;
+      transition: opacity 0.08s linear;
+      overflow: hidden;
+    }
+
+    /* Right wall (cyan) */
+    .card-wall-right {
+      top: 0; right: 0;
+      height: 100%; width: 44px;
+      transform-origin: right center;
+      transform: rotateY(90deg);
+      background: linear-gradient(to right,
+        rgba(0,245,255,0.0) 0%,
+        rgba(0,245,255,0.12) 50%,
+        rgba(0,245,255,0.30) 100%
+      );
+      border-right: 2px solid rgba(0,245,255,0.95);
+      box-shadow: inset -10px 0 24px rgba(0,245,255,0.25), 6px 0 40px rgba(0,245,255,0.55);
+    }
+
+    /* Left wall (magenta) */
+    .card-wall-left {
+      top: 0; left: 0;
+      height: 100%; width: 44px;
+      transform-origin: left center;
+      transform: rotateY(-90deg);
+      background: linear-gradient(to left,
+        rgba(255,0,85,0.0) 0%,
+        rgba(255,0,85,0.12) 50%,
+        rgba(255,0,85,0.28) 100%
+      );
+      border-left: 2px solid rgba(255,0,85,0.9);
+      box-shadow: inset 10px 0 24px rgba(255,0,85,0.22), -6px 0 40px rgba(255,0,85,0.5);
+    }
+
+    /* Bottom wall (acid yellow) */
+    .card-wall-bottom {
+      bottom: 0; left: 0;
+      width: 100%; height: 44px;
+      transform-origin: center bottom;
+      transform: rotateX(-90deg);
+      background: linear-gradient(to bottom,
+        rgba(232,255,0,0.0) 0%,
+        rgba(232,255,0,0.12) 50%,
+        rgba(232,255,0,0.28) 100%
+      );
+      border-bottom: 2px solid rgba(232,255,0,0.88);
+      box-shadow: inset 0 10px 24px rgba(232,255,0,0.18), 0 8px 40px rgba(232,255,0,0.45);
+    }
+
+    /* Top wall (soft cyan) */
+    .card-wall-top {
+      top: 0; left: 0;
+      width: 100%; height: 44px;
+      transform-origin: center top;
+      transform: rotateX(90deg);
+      background: linear-gradient(to top,
+        rgba(0,245,255,0.0) 0%,
+        rgba(0,245,255,0.08) 60%,
+        rgba(0,245,255,0.18) 100%
+      );
+      border-top: 1px solid rgba(0,245,255,0.5);
+      box-shadow: inset 0 -6px 18px rgba(0,245,255,0.12);
+    }
+
+    /* Corner brackets */
+    .card-corner-el {
+      position: absolute;
+      width: 16px; height: 16px;
+      border-color: var(--cyan, #00f5ff);
+      border-style: solid;
+      opacity: 0;
+      z-index: 10;
+      pointer-events: none;
+      transition: opacity 0.2s, border-color 0.4s, box-shadow 0.4s;
+    }
+    .event-card:hover .card-corner-el {
+      opacity: 1;
+      box-shadow: 0 0 8px #00f5ff, 0 0 22px rgba(0,245,255,0.6);
+      animation: ccPulse 1.1s ease infinite;
+    }
+    .card-corner-el.cc-tl { top:6px; left:6px; border-width:2px 0 0 2px; }
+    .card-corner-el.cc-tr { top:6px; right:6px; border-width:2px 2px 0 0; animation-delay:0.55s !important; }
+    .card-corner-el.cc-bl { bottom:6px; left:6px; border-width:0 0 2px 2px; animation-delay:0.28s !important; }
+    .card-corner-el.cc-br { bottom:6px; right:6px; border-width:0 2px 2px 0; animation-delay:0.82s !important; }
+
+    @keyframes ccPulse {
+      0%,100% { border-color:#00f5ff; box-shadow:0 0 8px #00f5ff, 0 0 22px rgba(0,245,255,0.6); }
+      50%      { border-color:#ff0055; box-shadow:0 0 8px #ff0055, 0 0 22px rgba(255,0,85,0.6); }
+    }
+
+    /* Hover glow on the card face */
+    .event-card:hover {
+      border-color: rgba(0,245,255,0.75) !important;
+      box-shadow:
+        0 0 0 1px rgba(0,245,255,0.8),
+        0 32px 80px rgba(0,0,0,0.88),
+        0 0 50px rgba(0,245,255,0.28),
+        0 0 90px rgba(255,0,85,0.12);
+    }
+    .event-card:hover .event-name {
+      color: #00f5ff;
+      text-shadow: 0 0 8px #00f5ff, 0 0 22px rgba(0,245,255,0.6), 0 0 55px rgba(0,245,255,0.25);
+    }
+    .event-card:hover .event-img {
+      filter: saturate(1.3) brightness(1.08) hue-rotate(0deg);
+      transform: scale(1.04);
+    }
+  `;
+  const styleTag = document.createElement("style");
+  styleTag.textContent = css;
+  document.head.appendChild(styleTag);
+
+  // ── 2. Build DOM elements inside each card ────────────────────────
+  function buildCard(card) {
+    // Overlays on the face
+    const overlay = document.createElement("div");
+    overlay.className = "card-face-overlay";
+    card.appendChild(overlay);
+
+    const glint = document.createElement("div");
+    glint.className = "card-glint";
+    card.appendChild(glint);
+
+    // 4 side walls
+    ["right", "left", "bottom", "top"].forEach((side) => {
+      const wall = document.createElement("div");
+      wall.className = `card-wall card-wall-${side}`;
+      card.appendChild(wall);
+    });
+
+    // 4 corner brackets
+    ["tl", "tr", "bl", "br"].forEach((pos) => {
+      const c = document.createElement("div");
+      c.className = `card-corner-el cc-${pos}`;
+      card.appendChild(c);
+    });
+  }
+
+  // ── 3. Mouse-tracking tilt with lerp rAF loop ────────────────────
+  const TILT = 15; // max tilt degrees
+  const LIFT = 42; // translateZ on hover (px)
+
+  function attachTilt(card) {
+    let isHover = false;
+    let tRX = 0,
+      tRY = 0; // target rotation
+    let cRX = 0,
+      cRY = 0; // current rotation (lerped)
+    let raf = null;
+
+    const walls = {
+      right: card.querySelector(".card-wall-right"),
+      left: card.querySelector(".card-wall-left"),
+      bottom: card.querySelector(".card-wall-bottom"),
+      top: card.querySelector(".card-wall-top"),
+    };
+
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    function tick() {
+      // Lerp toward target
+      cRX = lerp(cRX, tRX, 0.11);
+      cRY = lerp(cRY, tRY, 0.11);
+
+      const tz = isHover ? LIFT : 0;
+      const scale = isHover ? 1.03 : 1.0;
+
+      card.style.transform = `rotateX(${cRX.toFixed(3)}deg) rotateY(${cRY.toFixed(3)}deg) translateZ(${tz}px) scale(${scale})`;
+
+      // Drive wall opacity based on tilt direction
+      // RY > 0 = tilted right  → expose LEFT wall
+      // RY < 0 = tilted left   → expose RIGHT wall
+      // RX > 0 = tilted back   → expose BOTTOM wall
+      // RX < 0 = tilted forward→ expose TOP wall
+      const ryN = cRY / TILT; // -1 to +1
+      const rxN = cRX / TILT;
+
+      const minVis = isHover ? 0.08 : 0;
+      walls.right.style.opacity = Math.max(minVis, -ryN * 0.95).toFixed(3);
+      walls.left.style.opacity = Math.max(minVis, ryN * 0.95).toFixed(3);
+      walls.bottom.style.opacity = Math.max(minVis, rxN * 0.95).toFixed(3);
+      walls.top.style.opacity = Math.max(minVis, -rxN * 0.95).toFixed(3);
+
+      const stillMoving =
+        Math.abs(cRX - tRX) > 0.02 || Math.abs(cRY - tRY) > 0.02 || isHover;
+
+      if (stillMoving) {
+        raf = requestAnimationFrame(tick);
+      } else {
+        // Fully settled
+        card.style.transform = "";
+        walls.right.style.opacity = "0";
+        walls.left.style.opacity = "0";
+        walls.bottom.style.opacity = "0";
+        walls.top.style.opacity = "0";
+        raf = null;
+      }
+    }
+
+    card.addEventListener("mousemove", (e) => {
+      isHover = true;
+      const r = card.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const cy = r.top + r.height / 2;
+      const dx = (e.clientX - cx) / (r.width / 2); // -1 to 1
+      const dy = (e.clientY - cy) / (r.height / 2);
+      tRX = -dy * TILT;
+      tRY = dx * TILT;
+      if (!raf) {
+        raf = requestAnimationFrame(tick);
+      }
+    });
+
+    card.addEventListener("mouseenter", () => {
+      isHover = true;
+      if (!raf) {
+        raf = requestAnimationFrame(tick);
+      }
+    });
+
+    card.addEventListener("mouseleave", () => {
+      isHover = false;
+      tRX = 0;
+      tRY = 0;
+      if (!raf) {
+        raf = requestAnimationFrame(tick);
+      }
+    });
+  }
+
+  // ── 4. Init on DOM ready ──────────────────────────────────────────
+  function initAll() {
+    document.querySelectorAll(".event-card").forEach((card) => {
+      buildCard(card);
+      attachTilt(card);
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initAll);
+  } else {
+    initAll();
+  }
 })();
 
 // ─── MAIN DOMContentLoaded ────────────────────────────────────────
@@ -673,15 +910,6 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(() => el.classList.add("visible"), i * 150 + 300);
     });
   }, 1200);
-
-  // ─── NAVBAR SCROLL ───────────────────────────────
-  const navbar = document.querySelector(".navbar");
-  const navLinks = navbar ? navbar.querySelectorAll(".nav-links a") : [];
-  const navTitle = navbar ? navbar.querySelector(".nav-title") : null;
-  const navSub = navbar ? navbar.querySelector(".nav-sub") : null;
-  const hamburgerBars = navbar
-    ? navbar.querySelectorAll(".hamburger .bar")
-    : [];
 
   // ─── GLITCH ──────────────────────────────────────
   document.querySelectorAll(".glitch").forEach((el) => {
