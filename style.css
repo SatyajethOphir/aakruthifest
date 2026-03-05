@@ -1361,7 +1361,13 @@ main {
 .venue-box:hover {
   box-shadow: 0 0 45px rgba(255, 43, 242, 0.5);
 }
-
+.venue-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 1rem;
+}
 .venue-box::before {
   content: "";
   position: absolute;
@@ -2713,11 +2719,17 @@ section {
 /* ─── LEGACY STATS ───────────────────────────────────── */
 .legacy-stats {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--border);
+  grid-template-columns: repeat(
+    4,
+    1fr
+  ); /* was repeat(5,1fr) — you only have 4 items */
+  /* background: var(--border); */
   border: 1px solid var(--border);
   margin-bottom: 5rem;
+  justify-items: center; /* ← add this */
+  max-width: 900px; /* ← add this */
+  margin-left: auto; /* ← add this */
+  margin-right: auto; /* ← add this */
 }
 
 .legacy-stat {
