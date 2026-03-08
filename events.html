@@ -128,7 +128,6 @@
       .snav-btn:hover .snav-icon {
         transform: scale(1.25) rotate(-5deg);
       }
-
       .snav-count {
         font-family: "Share Tech Mono", monospace;
         font-size: 0.5rem;
@@ -138,7 +137,6 @@
         opacity: 0.55;
         transition: opacity 0.2s;
       }
-
       .snav-btn[data-sec="technical"] {
         --sc: var(--neon-blue);
         --sbg: rgba(0, 245, 255, 0.06);
@@ -155,7 +153,6 @@
         --sc: var(--neon-green);
         --sbg: rgba(57, 255, 20, 0.06);
       }
-
       .snav-count {
         background: var(--sbg);
         color: var(--sc);
@@ -190,7 +187,6 @@
         flex-shrink: 0;
         align-self: stretch;
       }
-
       @media (max-width: 768px) {
         .section-nav {
           top: 60px;
@@ -547,7 +543,6 @@
         }
       }
 
-      /* ── Esports category badge ── */
       .cat-esports {
         background: rgba(57, 255, 20, 0.12);
         color: var(--neon-green);
@@ -670,9 +665,7 @@
           <button class="filter-btn" data-filter="esports">ESPORTS</button>
         </div>
 
-        <!-- ══════════════════════════════════════════════
-             STICKY SECTION-NAV
-        ══════════════════════════════════════════════ -->
+        <!-- STICKY SECTION-NAV -->
         <div class="section-nav" id="sectionNav">
           <div class="section-nav-inner">
             <button
@@ -681,7 +674,7 @@
               onclick="jumpTo('sec-technical', this)"
             >
               <span class="snav-icon">&#9881;&#65039;</span> Technical
-              <span class="snav-count">06</span>
+              <span class="snav-count">08</span>
             </button>
             <div class="snav-sep"></div>
             <button
@@ -690,7 +683,7 @@
               onclick="jumpTo('sec-creative', this)"
             >
               <span class="snav-icon">&#127912;</span> Creative
-              <span class="snav-count">02</span>
+              <span class="snav-count">01</span>
             </button>
             <div class="snav-sep"></div>
             <button
@@ -699,7 +692,7 @@
               onclick="jumpTo('sec-cultural', this)"
             >
               <span class="snav-icon">&#127917;</span> Cultural
-              <span class="snav-count">02</span>
+              <span class="snav-count">01</span>
             </button>
             <div class="snav-sep"></div>
             <button
@@ -714,15 +707,16 @@
         </div>
 
         <!-- ══════════════════════════════════════════════
-             TECHNICAL
+             TECHNICAL  (08 events — includes Pradarshana & Chanakya)
         ══════════════════════════════════════════════ -->
         <div class="evt-strip" id="sec-technical">
           <div class="strip-hd">
             <span class="sh-scan"></span>
             <span class="sh-label">&#9881; &nbsp;TECHNICAL_EVENTS //</span>
-            <span class="sh-chip">06 EVENTS</span>
+            <span class="sh-chip">08 EVENTS</span>
           </div>
           <div class="events-grid">
+            <!-- Prasthuthi -->
             <div class="event-card" data-cat="tech">
               <div class="event-img-wrap">
                 <img
@@ -766,6 +760,7 @@
               </div>
             </div>
 
+            <!-- Prakalpana -->
             <div class="event-card" data-cat="tech">
               <div class="event-img-wrap">
                 <img
@@ -808,6 +803,7 @@
               </div>
             </div>
 
+            <!-- Medha -->
             <div class="event-card" data-cat="tech">
               <div class="event-img-wrap">
                 <img
@@ -847,6 +843,7 @@
               </div>
             </div>
 
+            <!-- Yantra -->
             <div class="event-card" data-cat="tech">
               <div class="event-img-wrap">
                 <img
@@ -884,6 +881,7 @@
               </div>
             </div>
 
+            <!-- Sangrahalaya -->
             <div class="event-card" data-cat="tech">
               <div class="event-img-wrap">
                 <img
@@ -916,6 +914,7 @@
               </div>
             </div>
 
+            <!-- Trishna -->
             <div class="event-card" data-cat="tech">
               <div class="event-img-wrap">
                 <img
@@ -929,9 +928,9 @@
               <div class="event-body">
                 <div class="event-name" data-text="Trishna">Trishna</div>
                 <div class="event-desc">
-                  Gear up to tickle your &ldquo;Quizzotic&rdquo; bond, this technocrat&rsquo;s
-                  revelation is to an enigmatic quiz challenge of a life time &mdash;
-                  so be there.
+                  Gear up to tickle your &ldquo;Quizzotic&rdquo; bond, this
+                  technocrat&rsquo;s revelation is to an enigmatic quiz
+                  challenge of a life time &mdash; so be there.
                 </div>
                 <div class="event-meta">
                   <div class="event-meta-item">
@@ -955,21 +954,9 @@
                 >
               </div>
             </div>
-          </div>
-        </div>
-        <!-- /#sec-technical -->
 
-        <!-- ══════════════════════════════════════════════
-             CREATIVE
-        ══════════════════════════════════════════════ -->
-        <div class="evt-strip" id="sec-creative">
-          <div class="strip-hd">
-            <span class="sh-scan"></span>
-            <span class="sh-label">&#127912; &nbsp;CREATIVE_EVENTS //</span>
-            <span class="sh-chip">02 EVENTS</span>
-          </div>
-          <div class="events-grid">
-            <div class="event-card" data-cat="creative">
+            <!-- ★ Pradarshana — MOVED TO TECHNICAL ★ -->
+            <div class="event-card" data-cat="tech">
               <div class="event-img-wrap">
                 <img
                   class="event-img"
@@ -977,7 +964,7 @@
                   alt="Pradarshana"
                 />
                 <div class="event-img-overlay"></div>
-                <div class="event-category cat-creative">Creative</div>
+                <div class="event-category cat-tech">Technical</div>
               </div>
               <div class="event-body">
                 <div class="event-name" data-text="Pradarshana">
@@ -1013,6 +1000,61 @@
               </div>
             </div>
 
+            <!-- ★ Chanakya — MOVED TO TECHNICAL ★ -->
+            <div class="event-card" data-cat="tech">
+              <div class="event-img-wrap">
+                <img
+                  class="event-img"
+                  src="https://img.freepik.com/free-photo/books-with-brain-digital-art-style-education-day_23-2151164350.jpg?t=st=1772704431~exp=1772708031~hmac=f69f90dc492ac992ae7fbcb95620375a9fd24607d46de629dbeb02ac813463cb&w=1480"
+                  alt="Chanakya"
+                />
+                <div class="event-img-overlay"></div>
+                <div class="event-category cat-tech">Technical</div>
+              </div>
+              <div class="event-body">
+                <div class="event-name" data-text="Chanakya">Chanakya</div>
+                <div class="event-desc">
+                  Embark on a captivating journey through a diverse general
+                  quiz, exploring history, science, and more, unraveling the
+                  mysteries of the world.
+                </div>
+                <div class="event-meta">
+                  <div class="event-meta-item">
+                    <span class="icon">&#128176;</span> &#8377;100 / 1 person
+                  </div>
+                  <div class="event-meta-item">
+                    <span class="icon">&#128176;</span> &#8377;200 / 3 people
+                  </div>
+                  <div class="event-meta-item">
+                    <span class="icon">&#127942;</span> Prizes Await
+                  </div>
+                  <div class="event-meta-item">
+                    <span class="icon">&#128197;</span> TBA
+                  </div>
+                </div>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLScQvo59Vth5z0FJmccOApZ7oScdVDbalSmsHxRm_Et39qx-AQ/viewform"
+                  target="_blank"
+                  class="event-register"
+                  >Register &rarr;</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /#sec-technical -->
+
+        <!-- ══════════════════════════════════════════════
+             CREATIVE  (01 event — Laghuchitra only)
+        ══════════════════════════════════════════════ -->
+        <div class="evt-strip" id="sec-creative">
+          <div class="strip-hd">
+            <span class="sh-scan"></span>
+            <span class="sh-label">&#127912; &nbsp;CREATIVE_EVENTS //</span>
+            <span class="sh-chip">01 EVENT</span>
+          </div>
+          <div class="events-grid">
+            <!-- Laghuchitra -->
             <div class="event-card" data-cat="creative">
               <div class="event-img-wrap">
                 <img
@@ -1058,55 +1100,16 @@
         <!-- /#sec-creative -->
 
         <!-- ══════════════════════════════════════════════
-             CULTURAL
+             CULTURAL  (01 event — Aahladakara only)
         ══════════════════════════════════════════════ -->
         <div class="evt-strip" id="sec-cultural">
           <div class="strip-hd">
             <span class="sh-scan"></span>
             <span class="sh-label">&#127917; &nbsp;CULTURAL_EVENTS //</span>
-            <span class="sh-chip">02 EVENTS</span>
+            <span class="sh-chip">01 EVENT</span>
           </div>
           <div class="events-grid">
-            <div class="event-card" data-cat="cultural">
-              <div class="event-img-wrap">
-                <img
-                  class="event-img"
-                  src="https://img.freepik.com/free-photo/books-with-brain-digital-art-style-education-day_23-2151164350.jpg?t=st=1772704431~exp=1772708031~hmac=f69f90dc492ac992ae7fbcb95620375a9fd24607d46de629dbeb02ac813463cb&w=1480"
-                  alt="Chanakya"
-                />
-                <div class="event-img-overlay"></div>
-                <div class="event-category cat-cultural">Quiz</div>
-              </div>
-              <div class="event-body">
-                <div class="event-name" data-text="Chanakya">Chanakya</div>
-                <div class="event-desc">
-                  Embark on a captivating journey through a diverse general
-                  quiz, exploring history, science, and more, unraveling the
-                  mysteries of the world.
-                </div>
-                <div class="event-meta">
-                  <div class="event-meta-item">
-                    <span class="icon">&#128176;</span> &#8377;100 / 1 person
-                  </div>
-                  <div class="event-meta-item">
-                    <span class="icon">&#128176;</span> &#8377;200 / 3 people
-                  </div>
-                  <div class="event-meta-item">
-                    <span class="icon">&#127942;</span> Prizes Await
-                  </div>
-                  <div class="event-meta-item">
-                    <span class="icon">&#128197;</span> TBA
-                  </div>
-                </div>
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLScQvo59Vth5z0FJmccOApZ7oScdVDbalSmsHxRm_Et39qx-AQ/viewform"
-                  target="_blank"
-                  class="event-register"
-                  >Register &rarr;</a
-                >
-              </div>
-            </div>
-
+            <!-- Aahladakara -->
             <div class="event-card" data-cat="cultural">
               <div class="event-img-wrap">
                 <img
@@ -1143,7 +1146,7 @@
         <!-- /#sec-cultural -->
 
         <!-- ══════════════════════════════════════════════
-             ESPORTS
+             ESPORTS  (02 events)
         ══════════════════════════════════════════════ -->
         <div class="evt-strip" id="sec-esports">
           <div class="strip-hd">
@@ -1152,6 +1155,7 @@
             <span class="sh-chip">02 EVENTS</span>
           </div>
           <div class="events-grid">
+            <!-- Free Fire -->
             <div class="event-card" data-cat="esports">
               <div class="event-img-wrap">
                 <img
@@ -1166,8 +1170,8 @@
                 <div class="event-name" data-text="Free Fire">Free Fire</div>
                 <div class="event-desc">
                   Drop in, survive, and dominate. Battle it out in the ultimate
-                  Free Fire showdown &mdash; only the last squad standing takes the
-                  crown.
+                  Free Fire showdown &mdash; only the last squad standing takes
+                  the crown.
                 </div>
                 <div class="event-meta">
                   <div class="event-meta-item">
@@ -1192,6 +1196,7 @@
               </div>
             </div>
 
+            <!-- BGMI -->
             <div class="event-card" data-cat="esports">
               <div class="event-img-wrap">
                 <img class="event-img" src="./assets/bgmi.jpg" alt="BGMI" />
@@ -1202,8 +1207,8 @@
                 <div class="event-name" data-text="BGMI">BGMI</div>
                 <div class="event-desc">
                   Gear up, squad up, and fight for the Chicken Dinner. The most
-                  intense Battlegrounds Mobile India tournament &mdash; strategy,
-                  skill, and survival.
+                  intense Battlegrounds Mobile India tournament &mdash;
+                  strategy, skill, and survival.
                 </div>
                 <div class="event-meta">
                   <div class="event-meta-item">
@@ -1235,7 +1240,7 @@
           <p
             id="stayTuned"
             style="
-              font-family: 'Share Tech Mono', monospace;
+              font-family: &quot;Share Tech Mono&quot;, monospace;
               font-size: 0.7rem;
               letter-spacing: 0.3em;
               color: var(--text-muted);
@@ -1255,7 +1260,9 @@
         <div class="footer-inner">
           <div>
             <div class="footer-brand">AAKRUTHI 2K26</div>
-            <div class="footer-sub">ECE DEPT &middot; UCEOU &middot; HYDERABAD</div>
+            <div class="footer-sub">
+              ECE DEPT &middot; UCEOU &middot; HYDERABAD
+            </div>
           </div>
           <div class="footer-links">
             <a href="index.html">Home</a><a href="events.html">Events</a>
@@ -1302,7 +1309,9 @@
               </svg>
             </a>
           </div>
-          <div class="footer-copy">&copy; 2026 AAKRUTHI &mdash; Designed by SOP</div>
+          <div class="footer-copy">
+            &copy; 2026 AAKRUTHI &mdash; Designed by SOP
+          </div>
         </div>
       </div>
     </footer>
@@ -1385,7 +1394,6 @@
         delay: 1.0,
       });
 
-      // Strip headers clip-reveal + scan
       document.querySelectorAll(".strip-hd").forEach((hd) => {
         gsap.set(hd, { opacity: 0 });
         ScrollTrigger.create({
@@ -1413,7 +1421,6 @@
         });
       });
 
-      // Cards stagger
       document.querySelectorAll(".events-grid").forEach((grid) => {
         gsap.fromTo(
           grid.querySelectorAll(".event-card"),
@@ -1435,7 +1442,6 @@
         );
       });
 
-      // Card tilt
       document.querySelectorAll(".event-card").forEach((card) => {
         card.addEventListener("mousemove", (e) => {
           const r = card.getBoundingClientRect();
@@ -1459,7 +1465,6 @@
         );
       });
 
-      // Register magnetic
       document.querySelectorAll(".event-register").forEach((btn) => {
         btn.addEventListener("mousemove", (e) => {
           const r = btn.getBoundingClientRect();
@@ -1480,7 +1485,6 @@
         );
       });
 
-      // Filter
       const filterBtns = document.querySelectorAll(".filter-btn");
       const allCards = document.querySelectorAll(".event-card[data-cat]");
       filterBtns.forEach((btn) => {
@@ -1540,7 +1544,6 @@
         });
       });
 
-      // Meta items
       document.querySelectorAll(".event-card").forEach((card) => {
         ScrollTrigger.create({
           trigger: card,
@@ -1563,7 +1566,6 @@
         });
       });
 
-      // Stay tuned
       ScrollTrigger.create({
         trigger: "#stayTuned",
         start: "top 90%",
@@ -1582,7 +1584,6 @@
         },
       });
 
-      // Parallax images
       document.querySelectorAll(".event-img-wrap").forEach((wrap) => {
         gsap.to(wrap.querySelector(".event-img"), {
           yPercent: -12,
@@ -1596,7 +1597,6 @@
         });
       });
 
-      // Particles
       ["#ff2bf2", "#00f7ff", "#1a9900"].forEach((col) => {
         for (let i = 0; i < 6; i++) {
           const p = Object.assign(document.createElement("div"), {
@@ -1617,7 +1617,6 @@
         }
       });
 
-      // Navbar blur
       ScrollTrigger.create({
         start: "top -80",
         onUpdate(self) {

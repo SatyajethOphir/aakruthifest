@@ -790,6 +790,8 @@ document.addEventListener("DOMContentLoaded", () => {
       (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
+        dot.style.left = e.clientX + "px";
+        dot.style.top = e.clientY + "px";
       },
       { passive: true },
     );
