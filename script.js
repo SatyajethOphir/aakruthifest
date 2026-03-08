@@ -1,5 +1,166 @@
 // script.js — Aakruthi 2K26 (Mobile-Optimised)
 
+// ═══════════════════════════════════════════════════════════════════
+//  HERO TITLE — ONE-TIME "AAKRUTHI" LETTER ANIMATION
+//  Fires once per page load (after the site loader exits).
+//  Uses sessionStorage so it never replays on refresh either.
+// ═══════════════════════════════════════════════════════════════════
+(function initHeroTitleAnim() {
+  // ── Inject required CSS ──────────────────────────────────────────
+  const style = document.createElement("style");
+  style.textContent = `
+    /* Split the hero title text into invisible spans until reveal */
+    .hero-title .ht-char {
+      display: inline-block;
+      opacity: 0;
+      /* start: above, tall, blurred */
+      transform: translateY(-40px) scaleY(1.6) skewX(-8deg);
+      filter: blur(6px);
+      will-change: transform, opacity, filter;
+    }
+
+    /* The reveal keyframe — snaps into place with an overshoot */
+    @keyframes ht-reveal {
+      0%   {
+        opacity: 0;
+        transform: translateY(-40px) scaleY(1.6) skewX(-8deg);
+        filter: blur(6px);
+        text-shadow: 0 0 0 transparent;
+      }
+      55%  {
+        opacity: 1;
+        transform: translateY(4px) scaleY(0.94) skewX(1deg);
+        filter: blur(0);
+        text-shadow:
+          0 0 18px rgba(0, 245, 255, 0.9),
+          0 0 40px rgba(0, 245, 255, 0.5);
+      }
+      75%  {
+        transform: translateY(-2px) scaleY(1.02) skewX(0deg);
+        text-shadow:
+          0 0 10px rgba(0, 245, 255, 0.6),
+          0 0 28px rgba(0, 245, 255, 0.3);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scaleY(1) skewX(0deg);
+        filter: blur(0);
+        text-shadow:
+          0 0 6px rgba(0, 245, 255, 0.35),
+          0 0 18px rgba(0, 245, 255, 0.15);
+      }
+    }
+
+    /* Glitch flash on the title right after all letters land */
+    @keyframes ht-glitch-flash {
+      0%   { text-shadow: 3px 0 0 rgba(255,43,242,0.7), -3px 0 0 rgba(0,245,255,0.7); }
+      20%  { text-shadow: -3px 0 0 rgba(255,43,242,0.7),  3px 0 0 rgba(0,245,255,0.7); }
+      40%  { text-shadow: 2px 0 0 rgba(255,43,242,0.5), -2px 0 0 rgba(0,245,255,0.5); }
+      60%  { text-shadow: -1px 0 0 rgba(255,43,242,0.4),  1px 0 0 rgba(0,245,255,0.4); }
+      100% { text-shadow: 0 0 6px rgba(0,245,255,0.35), 0 0 18px rgba(0,245,255,0.15); }
+    }
+
+    .hero-title.ht-glitch {
+      animation: ht-glitch-flash 0.45s steps(1) forwards;
+    }
+
+    /* Once done, ensure full visibility (no leftover opacity) */
+    .hero-title.ht-done .ht-char {
+      opacity: 1;
+      transform: none;
+      filter: none;
+      animation: none;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // ── Split text into char spans ────────────────────────────────────
+  function splitTitle(el) {
+    const text = el.dataset.text || el.textContent.trim();
+    // Preserve the data-text attribute (used by the glitch effect)
+    el.innerHTML = "";
+    [...text].forEach((ch) => {
+      const span = document.createElement("span");
+      span.className = "ht-char";
+      span.textContent = ch;
+      el.appendChild(span);
+    });
+  }
+
+  // ── The actual reveal ─────────────────────────────────────────────
+  function runHeroAnim() {
+    const title = document.querySelector(".hero-title");
+    if (!title) return;
+
+    // Guard: only run once per session
+    if (sessionStorage.getItem("aak-hero-played")) {
+      // Still need chars to be visible immediately on second view
+      title.classList.add("ht-done");
+      splitTitle(title);
+      return;
+    }
+
+    splitTitle(title);
+    const chars = title.querySelectorAll(".ht-char");
+    const STAGGER = 80; // ms between each letter
+    const DUR = 620; // ms per letter animation
+    const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+    chars.forEach((ch, i) => {
+      ch.style.animationName = "ht-reveal";
+      ch.style.animationDuration = DUR + "ms";
+      ch.style.animationDelay = i * STAGGER + "ms";
+      ch.style.animationFillMode = "forwards";
+      ch.style.animationTimingFunction = EASE;
+    });
+
+    // After all letters land, fire a one-shot glitch flash
+    const totalMs = (chars.length - 1) * STAGGER + DUR;
+    setTimeout(() => {
+      title.classList.add("ht-glitch");
+      setTimeout(() => {
+        title.classList.remove("ht-glitch");
+        title.classList.add("ht-done");
+        sessionStorage.setItem("aak-hero-played", "1");
+      }, 460);
+    }, totalMs);
+  }
+
+  // ── Timing: wait for the loader to exit (~1900 ms from index.html) ──
+  //    If the loader is already gone (e.g. fast load), fire right away.
+  function waitForLoader() {
+    const loader = document.getElementById("loader");
+
+    if (!loader) {
+      // No loader on this page — fire after a short paint delay
+      setTimeout(runHeroAnim, 200);
+      return;
+    }
+
+    // Watch for the "hidden" class being added to the loader
+    const obs = new MutationObserver(() => {
+      if (loader.classList.contains("hidden")) {
+        obs.disconnect();
+        // Small extra delay so the loader fade-out finishes first
+        setTimeout(runHeroAnim, 350);
+      }
+    });
+    obs.observe(loader, { attributes: true, attributeFilter: ["class"] });
+
+    // Fallback: if hidden was already added before we started observing
+    if (loader.classList.contains("hidden")) {
+      obs.disconnect();
+      setTimeout(runHeroAnim, 350);
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", waitForLoader);
+  } else {
+    waitForLoader();
+  }
+})();
+
 // ─── BACKGROUND: Deep Space Galaxy Environment ───────────────────
 (function initBackground() {
   const isMobile =
@@ -38,7 +199,6 @@
     );
   }
 
-  // ── Reduced counts for mobile ──
   const STAR_COUNT = isMobile ? 100 : 340;
   const stars = [];
   for (let i = 0; i < STAR_COUNT; i++) {
@@ -231,7 +391,6 @@
   let shooterTimer = 0;
   const SHOOTER_INTERVAL = isMobile ? 600 : 280;
 
-  // ── Skip dust entirely on mobile ──
   const DUST_COUNT = isMobile ? 0 : 22;
   const dust = [];
   for (let i = 0; i < DUST_COUNT; i++) {
@@ -320,7 +479,6 @@
       const twinkle = 0.75 + Math.sin(s.twinklePhase) * 0.25;
       ctx.globalAlpha = s.alpha * twinkle;
       ctx.shadowColor = s.color;
-      // Reduce shadow blur on mobile for perf
       ctx.shadowBlur = isMobile ? 0 : s.r > 0.8 ? 5 : 2;
       ctx.fillStyle = s.color;
       ctx.beginPath();
@@ -378,38 +536,31 @@
   }
 
   let animId;
-  // ── Frame throttle: skip odd frames on mobile (~30fps) ──
   let frameCount = 0;
 
   function loop() {
     frameCount++;
-    // On mobile, only render every 2nd frame
     if (isMobile && frameCount % 2 !== 0) {
       animId = requestAnimationFrame(loop);
       return;
     }
-
     frame++;
     mouseX += (targetMouseX - mouseX) * 0.04;
     mouseY += (targetMouseY - mouseY) * 0.04;
     const px = mouseX - W / 2,
       py = mouseY - H / 2;
-
     ctx.clearRect(0, 0, W, H);
     ctx.shadowBlur = 0;
-
     drawGalaxyCore(px, py);
     drawNebulae(px, py);
     drawStars(px, py);
     if (!isMobile) drawDust(px, py);
     drawEnergyConnections();
-
     ctx.shadowBlur = 0;
     energyParticles.forEach((p) => {
       p.update();
       p.draw();
     });
-
     shooterTimer++;
     if (shooterTimer >= SHOOTER_INTERVAL) {
       for (const s of shooters) {
@@ -425,7 +576,6 @@
       s.update();
       s.draw();
     }
-
     ctx.globalAlpha = 1;
     ctx.shadowBlur = 0;
     animId = requestAnimationFrame(loop);
@@ -459,7 +609,7 @@
 })();
 
 // ═══════════════════════════════════════════════════════════════════
-//  3D CARD POP — Disabled on touch/mobile for performance
+//  3D CARD POP
 // ═══════════════════════════════════════════════════════════════════
 (function init3DCards() {
   const isTouchDevice =
@@ -467,137 +617,46 @@
     window.matchMedia("(max-width: 768px)").matches;
 
   const css = `
-    .events-grid {
-      perspective: 1100px;
-      perspective-origin: 50% 40%;
-    }
+    .events-grid { perspective: 1100px; perspective-origin: 50% 40%; }
     .event-card {
       transform-style: preserve-3d;
       transition: box-shadow 0.35s ease, border-color 0.35s ease;
-      position: relative;
-      overflow: visible !important;
+      position: relative; overflow: visible !important;
     }
     .event-card .card-face-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 8;
-      pointer-events: none;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent, transparent 3px,
-        rgba(0,245,255,0.018) 3px, rgba(0,245,255,0.018) 4px
-      );
-      opacity: 0;
-      transition: opacity 0.3s;
+      position: absolute; inset: 0; z-index: 8; pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,245,255,0.018) 3px, rgba(0,245,255,0.018) 4px);
+      opacity: 0; transition: opacity 0.3s;
     }
     .event-card:hover .card-face-overlay { opacity: 1; }
-
     .event-card .card-glint {
-      position: absolute;
-      inset: 0;
-      z-index: 9;
-      pointer-events: none;
-      background: linear-gradient(
-        125deg,
-        transparent 0%, transparent 30%,
-        rgba(0,245,255,0.07) 47%, rgba(255,255,255,0.13) 50%, rgba(0,245,255,0.05) 53%,
-        transparent 70%, transparent 100%
-      );
-      background-size: 250% 100%;
-      background-position: 200% 0;
-      opacity: 0;
-      transition: opacity 0.2s, background-position 0.55s ease;
+      position: absolute; inset: 0; z-index: 9; pointer-events: none;
+      background: linear-gradient(125deg, transparent 0%, transparent 30%, rgba(0,245,255,0.07) 47%, rgba(255,255,255,0.13) 50%, rgba(0,245,255,0.05) 53%, transparent 70%, transparent 100%);
+      background-size: 250% 100%; background-position: 200% 0;
+      opacity: 0; transition: opacity 0.2s, background-position 0.55s ease;
     }
-    .event-card:hover .card-glint {
-      opacity: 1;
-      background-position: -50% 0;
-    }
-
+    .event-card:hover .card-glint { opacity: 1; background-position: -50% 0; }
     .card-wall {
-      position: absolute;
-      pointer-events: none;
-      opacity: 0;
-      z-index: -1;
-      transform-style: preserve-3d;
-      transition: opacity 0.08s linear;
-      overflow: hidden;
+      position: absolute; pointer-events: none; opacity: 0; z-index: -1;
+      transform-style: preserve-3d; transition: opacity 0.08s linear; overflow: hidden;
     }
-    .card-wall-right {
-      top: 0; right: 0;
-      height: 100%; width: 44px;
-      transform-origin: right center;
-      transform: rotateY(90deg);
-      background: linear-gradient(to right, rgba(0,245,255,0.0) 0%, rgba(0,245,255,0.12) 50%, rgba(0,245,255,0.30) 100%);
-      border-right: 2px solid rgba(0,245,255,0.95);
-      box-shadow: inset -10px 0 24px rgba(0,245,255,0.25), 6px 0 40px rgba(0,245,255,0.55);
-    }
-    .card-wall-left {
-      top: 0; left: 0;
-      height: 100%; width: 44px;
-      transform-origin: left center;
-      transform: rotateY(-90deg);
-      background: linear-gradient(to left, rgba(255,0,85,0.0) 0%, rgba(255,0,85,0.12) 50%, rgba(255,0,85,0.28) 100%);
-      border-left: 2px solid rgba(255,0,85,0.9);
-      box-shadow: inset 10px 0 24px rgba(255,0,85,0.22), -6px 0 40px rgba(255,0,85,0.5);
-    }
-    .card-wall-bottom {
-      bottom: 0; left: 0;
-      width: 100%; height: 44px;
-      transform-origin: center bottom;
-      transform: rotateX(-90deg);
-      background: linear-gradient(to bottom, rgba(232,255,0,0.0) 0%, rgba(232,255,0,0.12) 50%, rgba(232,255,0,0.28) 100%);
-      border-bottom: 2px solid rgba(232,255,0,0.88);
-      box-shadow: inset 0 10px 24px rgba(232,255,0,0.18), 0 8px 40px rgba(232,255,0,0.45);
-    }
-    .card-wall-top {
-      top: 0; left: 0;
-      width: 100%; height: 44px;
-      transform-origin: center top;
-      transform: rotateX(90deg);
-      background: linear-gradient(to top, rgba(0,245,255,0.0) 0%, rgba(0,245,255,0.08) 60%, rgba(0,245,255,0.18) 100%);
-      border-top: 1px solid rgba(0,245,255,0.5);
-      box-shadow: inset 0 -6px 18px rgba(0,245,255,0.12);
-    }
-    .card-corner-el {
-      position: absolute;
-      width: 16px; height: 16px;
-      border-color: var(--cyan, #00f5ff);
-      border-style: solid;
-      opacity: 0;
-      z-index: 10;
-      pointer-events: none;
-      transition: opacity 0.2s, border-color 0.4s, box-shadow 0.4s;
-    }
-    .event-card:hover .card-corner-el {
-      opacity: 1;
-      box-shadow: 0 0 8px #00f5ff, 0 0 22px rgba(0,245,255,0.6);
-      animation: ccPulse 1.1s ease infinite;
-    }
-    .card-corner-el.cc-tl { top:6px; left:6px; border-width:2px 0 0 2px; }
-    .card-corner-el.cc-tr { top:6px; right:6px; border-width:2px 2px 0 0; animation-delay:0.55s !important; }
-    .card-corner-el.cc-bl { bottom:6px; left:6px; border-width:0 0 2px 2px; animation-delay:0.28s !important; }
+    .card-wall-right { top:0; right:0; height:100%; width:44px; transform-origin:right center; transform:rotateY(90deg); background:linear-gradient(to right,rgba(0,245,255,0.0) 0%,rgba(0,245,255,0.12) 50%,rgba(0,245,255,0.30) 100%); border-right:2px solid rgba(0,245,255,0.95); box-shadow:inset -10px 0 24px rgba(0,245,255,0.25),6px 0 40px rgba(0,245,255,0.55); }
+    .card-wall-left  { top:0; left:0;  height:100%; width:44px; transform-origin:left center;  transform:rotateY(-90deg); background:linear-gradient(to left,rgba(255,0,85,0.0) 0%,rgba(255,0,85,0.12) 50%,rgba(255,0,85,0.28) 100%); border-left:2px solid rgba(255,0,85,0.9); box-shadow:inset 10px 0 24px rgba(255,0,85,0.22),-6px 0 40px rgba(255,0,85,0.5); }
+    .card-wall-bottom { bottom:0; left:0; width:100%; height:44px; transform-origin:center bottom; transform:rotateX(-90deg); background:linear-gradient(to bottom,rgba(232,255,0,0.0) 0%,rgba(232,255,0,0.12) 50%,rgba(232,255,0,0.28) 100%); border-bottom:2px solid rgba(232,255,0,0.88); box-shadow:inset 0 10px 24px rgba(232,255,0,0.18),0 8px 40px rgba(232,255,0,0.45); }
+    .card-wall-top { top:0; left:0; width:100%; height:44px; transform-origin:center top; transform:rotateX(90deg); background:linear-gradient(to top,rgba(0,245,255,0.0) 0%,rgba(0,245,255,0.08) 60%,rgba(0,245,255,0.18) 100%); border-top:1px solid rgba(0,245,255,0.5); box-shadow:inset 0 -6px 18px rgba(0,245,255,0.12); }
+    .card-corner-el { position:absolute; width:16px; height:16px; border-color:var(--cyan,#00f5ff); border-style:solid; opacity:0; z-index:10; pointer-events:none; transition:opacity 0.2s,border-color 0.4s,box-shadow 0.4s; }
+    .event-card:hover .card-corner-el { opacity:1; box-shadow:0 0 8px #00f5ff,0 0 22px rgba(0,245,255,0.6); animation:ccPulse 1.1s ease infinite; }
+    .card-corner-el.cc-tl { top:6px; left:6px;   border-width:2px 0 0 2px; }
+    .card-corner-el.cc-tr { top:6px; right:6px;  border-width:2px 2px 0 0; animation-delay:0.55s !important; }
+    .card-corner-el.cc-bl { bottom:6px; left:6px;  border-width:0 0 2px 2px; animation-delay:0.28s !important; }
     .card-corner-el.cc-br { bottom:6px; right:6px; border-width:0 2px 2px 0; animation-delay:0.82s !important; }
     @keyframes ccPulse {
-      0%,100% { border-color:#00f5ff; box-shadow:0 0 8px #00f5ff, 0 0 22px rgba(0,245,255,0.6); }
-      50%      { border-color:#ff0055; box-shadow:0 0 8px #ff0055, 0 0 22px rgba(255,0,85,0.6); }
+      0%,100% { border-color:#00f5ff; box-shadow:0 0 8px #00f5ff,0 0 22px rgba(0,245,255,0.6); }
+      50%      { border-color:#ff0055; box-shadow:0 0 8px #ff0055,0 0 22px rgba(255,0,85,0.6); }
     }
-    .event-card:hover {
-      border-color: rgba(0,245,255,0.75) !important;
-      box-shadow:
-        0 0 0 1px rgba(0,245,255,0.8),
-        0 32px 80px rgba(0,0,0,0.88),
-        0 0 50px rgba(0,245,255,0.28),
-        0 0 90px rgba(255,0,85,0.12);
-    }
-    .event-card:hover .event-name {
-      color: #00f5ff;
-      text-shadow: 0 0 8px #00f5ff, 0 0 22px rgba(0,245,255,0.6), 0 0 55px rgba(0,245,255,0.25);
-    }
-    .event-card:hover .event-img {
-      filter: saturate(1.3) brightness(1.08);
-      transform: scale(1.04);
-    }
-    /* On touch devices: skip will-change and 3D layers */
+    .event-card:hover { border-color:rgba(0,245,255,0.75) !important; box-shadow:0 0 0 1px rgba(0,245,255,0.8),0 32px 80px rgba(0,0,0,0.88),0 0 50px rgba(0,245,255,0.28),0 0 90px rgba(255,0,85,0.12); }
+    .event-card:hover .event-name { color:#00f5ff; text-shadow:0 0 8px #00f5ff,0 0 22px rgba(0,245,255,0.6),0 0 55px rgba(0,245,255,0.25); }
+    .event-card:hover .event-img { filter:saturate(1.3) brightness(1.08); transform:scale(1.04); }
     @media (max-width: 768px) {
       .event-card { transform-style: flat !important; }
       .card-wall { display: none !important; }
@@ -611,12 +670,9 @@
     const overlay = document.createElement("div");
     overlay.className = "card-face-overlay";
     card.appendChild(overlay);
-
     const glint = document.createElement("div");
     glint.className = "card-glint";
     card.appendChild(glint);
-
-    // Only build walls on desktop
     if (!isTouchDevice) {
       ["right", "left", "bottom", "top"].forEach((side) => {
         const wall = document.createElement("div");
@@ -624,7 +680,6 @@
         card.appendChild(wall);
       });
     }
-
     ["tl", "tr", "bl", "br"].forEach((pos) => {
       const c = document.createElement("div");
       c.className = `card-corner-el cc-${pos}`;
@@ -632,76 +687,66 @@
     });
   }
 
-  const TILT = 14;
-  const LIFT = 38;
+  const TILT = 14,
+    LIFT = 38;
 
   function attachTilt(card) {
-    // Skip rAF tilt loop entirely on touch devices
     if (isTouchDevice) return;
-
-    let isHover = false;
-    let tRX = 0,
-      tRY = 0;
-    let cRX = 0,
-      cRY = 0;
-    let raf = null;
-
+    let isHover = false,
+      tRX = 0,
+      tRY = 0,
+      cRX = 0,
+      cRY = 0,
+      raf = null;
     const walls = {
       right: card.querySelector(".card-wall-right"),
       left: card.querySelector(".card-wall-left"),
       bottom: card.querySelector(".card-wall-bottom"),
       top: card.querySelector(".card-wall-top"),
     };
-
     function lerp(a, b, t) {
       return a + (b - a) * t;
     }
-
     function tick() {
       cRX = lerp(cRX, tRX, 0.11);
       cRY = lerp(cRY, tRY, 0.11);
-      const tz = isHover ? LIFT : 0;
-      const scale = isHover ? 1.03 : 1.0;
+      const tz = isHover ? LIFT : 0,
+        scale = isHover ? 1.03 : 1.0;
       card.style.transform = `rotateX(${cRX.toFixed(3)}deg) rotateY(${cRY.toFixed(3)}deg) translateZ(${tz}px) scale(${scale})`;
-
-      const ryN = cRY / TILT;
-      const rxN = cRX / TILT;
-      const minVis = isHover ? 0.08 : 0;
+      const ryN = cRY / TILT,
+        rxN = cRX / TILT,
+        minVis = isHover ? 0.08 : 0;
       walls.right.style.opacity = Math.max(minVis, -ryN * 0.95).toFixed(3);
       walls.left.style.opacity = Math.max(minVis, ryN * 0.95).toFixed(3);
       walls.bottom.style.opacity = Math.max(minVis, rxN * 0.95).toFixed(3);
       walls.top.style.opacity = Math.max(minVis, -rxN * 0.95).toFixed(3);
-
       const stillMoving =
         Math.abs(cRX - tRX) > 0.02 || Math.abs(cRY - tRY) > 0.02 || isHover;
-
       if (stillMoving) {
         raf = requestAnimationFrame(tick);
       } else {
         card.style.transform = "";
-        walls.right.style.opacity = "0";
-        walls.left.style.opacity = "0";
-        walls.bottom.style.opacity = "0";
-        walls.top.style.opacity = "0";
+        walls.right.style.opacity =
+          walls.left.style.opacity =
+          walls.bottom.style.opacity =
+          walls.top.style.opacity =
+            "0";
         raf = null;
       }
     }
-
     card.addEventListener("mousemove", (e) => {
       isHover = true;
-      const r = card.getBoundingClientRect();
-      const cx = r.left + r.width / 2;
-      const cy = r.top + r.height / 2;
+      const r = card.getBoundingClientRect(),
+        cx = r.left + r.width / 2,
+        cy = r.top + r.height / 2;
       tRX = -((e.clientY - cy) / (r.height / 2)) * TILT;
       tRY = ((e.clientX - cx) / (r.width / 2)) * TILT;
       if (!raf) raf = requestAnimationFrame(tick);
     });
-
     card.addEventListener("mouseenter", () => {
       isHover = true;
       if (!raf) raf = requestAnimationFrame(tick);
     });
-
     card.addEventListener("mouseleave", () => {
       isHover = false;
       tRX = 0;
@@ -716,12 +761,9 @@
       attachTilt(card);
     });
   }
-
-  if (document.readyState === "loading") {
+  if (document.readyState === "loading")
     document.addEventListener("DOMContentLoaded", initAll);
-  } else {
-    initAll();
-  }
+  else initAll();
 })();
 
 // ─── MAIN DOMContentLoaded ────────────────────────────────────────
@@ -748,12 +790,9 @@ document.addEventListener("DOMContentLoaded", () => {
       (e) => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        dot.style.left = mouseX + "px";
-        dot.style.top = mouseY + "px";
       },
       { passive: true },
     );
-
     function animateRing() {
       ringX += (mouseX - ringX) * 0.12;
       ringY += (mouseY - ringY) * 0.12;
@@ -762,7 +801,6 @@ document.addEventListener("DOMContentLoaded", () => {
       requestAnimationFrame(animateRing);
     }
     animateRing();
-
     document
       .querySelectorAll(
         "a, button, .event-card, .faq-question, .contact-btn, .filter-btn, .mem-item",
@@ -819,7 +857,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const hoursEl = document.getElementById("cd-hours");
   const minEl = document.getElementById("cd-min");
   const secEl = document.getElementById("cd-sec");
-
   if (daysEl) {
     function updateCountdown() {
       const diff = targetDate - Date.now();

@@ -86,35 +86,6 @@
               "item": "https://aakruthi.osmania.ac.in/sponsors.html"
             }
           ]
-        },
-        "mainEntity": {
-          "@type": "Event",
-          "name": "Aakruthi 2K26",
-          "startDate": "2026-03-12",
-          "endDate": "2026-03-13",
-          "location": {
-            "@type": "Place",
-            "name": "University College of Engineering, Osmania University",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Amberpet",
-              "addressLocality": "Hyderabad",
-              "addressRegion": "Telangana",
-              "postalCode": "500007",
-              "addressCountry": "IN"
-            }
-          },
-          "organizer": {
-            "@type": "EducationalOrganization",
-            "name": "Department of ECE, UCE Osmania University",
-            "url": "https://aakruthi.osmania.ac.in/"
-          },
-          "sponsor": [
-            { "@type": "Organization", "name": "IEEE Hyderabad Section" },
-            { "@type": "Organization", "name": "IETE Hyderabad" },
-            { "@type": "Organization", "name": "T-Hub Hyderabad" },
-            { "@type": "Organization", "name": "NASSCOM" }
-          ]
         }
       }
     </script>
@@ -127,6 +98,34 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+
+    <style>
+      /* ── Sponsor logo image sizing ── */
+      .sponsor-logo-img {
+        max-width: 100%;
+        max-height: 90px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        display: block;
+        margin: 0 auto;
+        filter: brightness(1.05) contrast(1.02);
+        transition:
+          transform 0.3s ease,
+          filter 0.3s ease;
+      }
+      .sponsor-card:hover .sponsor-logo-img {
+        transform: scale(1.06);
+        filter: brightness(1.15) contrast(1.05);
+      }
+      /* Ensure logo-wrap has consistent height */
+      .sponsor-logo-wrap {
+        min-height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
   </head>
   <body>
     <div class="bg-grid"></div>
@@ -150,7 +149,6 @@
           <span class="nav-sub">Technical Symposium · UCEOU · 2K26</span>
         </div>
       </a>
-      <!-- ── COLLEGE LOGOS ── -->
       <div class="nav-logos">
         <img
           src="./assets/OU_logo.png"
@@ -173,9 +171,7 @@
         <li><a href="sponsors.html" class="active">Sponsors</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
-
       <a href="events.html" class="nav-register">⚡ Register</a>
-
       <div class="hamburger" id="hamburger">
         <div class="bar"></div>
         <div class="bar"></div>
@@ -274,11 +270,16 @@
                 <span class="corner-tl"></span>
                 <span class="corner-br"></span>
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">TECHCORP</div>
+                  <div
+                    class="sponsor-logo-placeholder"
+                    style="letter-spacing: 0.2em; opacity: 0.5"
+                  >
+                    TBA
+                  </div>
                 </div>
-                <div class="sponsor-name">TechCorp India Pvt. Ltd.</div>
+                <div class="sponsor-name">To Be Announced</div>
                 <div class="sponsor-tagline">
-                  Empowering engineers since 2001 · www.techcorp.in
+                  Title sponsor announcement coming soon
                 </div>
                 <div class="sponsor-perks">
                   <span class="perk-tag">Main Stage Naming</span>
@@ -290,237 +291,232 @@
             </div>
           </div>
 
-          <!-- ── PLATINUM SPONSORS ──────────────────────── -->
+          <!-- ── PLATINUM SPONSORS (₹2,00,000) ─────────── -->
           <div class="tier-section reveal">
             <div class="tier-header tier-platinum-hdr" data-tier="PLATINUM">
               <span class="tier-icon">💎</span>
               <div class="tier-meta">
                 <div class="tier-name">Platinum Sponsors</div>
                 <div class="tier-sub">
-                  &gt; premium_tier.sys · high-impact visibility
+                  &gt; premium_tier.sys · ₹2,00,000 · high-impact visibility
                 </div>
               </div>
               <span class="tier-badge">Platinum Tier</span>
             </div>
             <div class="grid-platinum">
+              <!-- MosChip -->
               <a href="#" class="sponsor-card sc-platinum reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">NEXGEN</div>
+                  <img
+                    src="./assets/logos/MosChip-Logo.jpg"
+                    alt="MosChip Technologies"
+                    class="sponsor-logo-img"
+                  />
                 </div>
-                <div class="sponsor-name">NexGen Semiconductors</div>
-                <div class="sponsor-tagline">VLSI & Chip Design Excellence</div>
+                <div class="sponsor-name">MosChip Technologies</div>
+                <div class="sponsor-tagline">
+                  Semiconductor &amp; VLSI Solutions · Hyderabad
+                </div>
                 <div class="sponsor-perks">
                   <span class="perk-tag">Event Co-Sponsor</span>
                   <span class="perk-tag">Stage Banner</span>
                   <span class="perk-tag">Stall · 200 sq ft</span>
                 </div>
               </a>
+
+              <!-- RUSSA -->
               <a href="#" class="sponsor-card sc-platinum reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">INFOSYS</div>
+                  <div class="sponsor-logo-placeholder">RUSSA</div>
                 </div>
-                <div class="sponsor-name">Infosys Foundation</div>
+                <div class="sponsor-name">RUSSA</div>
                 <div class="sponsor-tagline">
-                  Driving digital transformation nationwide
+                  Rashtriya Uchchatar Shiksha Abhiyan
                 </div>
                 <div class="sponsor-perks">
-                  <span class="perk-tag">Keynote Slot</span>
-                  <span class="perk-tag">Branding on Kits</span>
+                  <span class="perk-tag">Event Co-Sponsor</span>
+                  <span class="perk-tag">Stage Banner</span>
                   <span class="perk-tag">Stall · 200 sq ft</span>
                 </div>
               </a>
             </div>
           </div>
 
-          <!-- ── GOLD SPONSORS ──────────────────────────── -->
+          <!-- ── GOLD SPONSORS (₹50,000) ────────────────── -->
           <div class="tier-section reveal">
             <div class="tier-header tier-gold-hdr" data-tier="GOLD">
               <span class="tier-icon">🥇</span>
               <div class="tier-meta">
                 <div class="tier-name">Gold Sponsors</div>
                 <div class="tier-sub">
-                  &gt; gold_tier.sys · strong brand exposure
+                  &gt; gold_tier.sys · ₹50,000 · strong brand exposure
                 </div>
               </div>
               <span class="tier-badge">Gold Tier</span>
             </div>
             <div class="grid-gold">
+              <!-- LIC -->
               <a href="#" class="sponsor-card sc-gold reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">QUALCOMM</div>
+                  <img
+                    src="./assets/logos/lic_logo.jpg"
+                    alt="LIC of India"
+                    class="sponsor-logo-img"
+                  />
                 </div>
-                <div class="sponsor-name">Qualcomm India</div>
-                <div class="sponsor-tagline">5G & Wireless Innovation</div>
+                <div class="sponsor-name">LIC of India</div>
+                <div class="sponsor-tagline">
+                  Life Insurance Corporation of India
+                </div>
               </a>
+
+              <!-- Iobit -->
               <a href="#" class="sponsor-card sc-gold reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">TEXAS&nbsp;IB</div>
+                  <img
+                    src="./assets/logos/iobit_logo.png"
+                    alt="IObit"
+                    class="sponsor-logo-img"
+                  />
                 </div>
-                <div class="sponsor-name">Texas Instruments</div>
-                <div class="sponsor-tagline">Analog & Embedded Processing</div>
-              </a>
-              <a href="#" class="sponsor-card sc-gold reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">ARM</div>
+                <div class="sponsor-name">IObit</div>
+                <div class="sponsor-tagline">
+                  System Optimisation &amp; Security Software
                 </div>
-                <div class="sponsor-name">Arm Education</div>
-                <div class="sponsor-tagline">Processor Architecture & IP</div>
               </a>
             </div>
           </div>
 
-          <!-- ── SILVER SPONSORS ────────────────────────── -->
+          <!-- ── SILVER SPONSORS (₹20,000) ──────────────── -->
           <div class="tier-section reveal">
             <div class="tier-header tier-silver-hdr" data-tier="SILVER">
               <span class="tier-icon">🥈</span>
               <div class="tier-meta">
                 <div class="tier-name">Silver Sponsors</div>
                 <div class="tier-sub">
-                  &gt; silver_tier.sys · targeted reach
+                  &gt; silver_tier.sys · ₹20,000 · targeted reach
                 </div>
               </div>
               <span class="tier-badge">Silver Tier</span>
             </div>
-            <div class="grid-silver">
+            <div
+              class="grid-silver"
+              style="
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                max-width: 500px;
+                margin: 0 auto;
+              "
+            >
+              <!-- Sarat IAS Academy -->
               <a href="#" class="sponsor-card sc-silver reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">CISCO</div>
+                  <img
+                    src="./assets/logos/sarat_academy_logo.webp"
+                    alt="Sarat IAS Academy"
+                    class="sponsor-logo-img"
+                  />
                 </div>
-                <div class="sponsor-name">Cisco Systems</div>
-                <div class="sponsor-tagline">Networking & Cybersecurity</div>
-              </a>
-              <a href="#" class="sponsor-card sc-silver reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">BOSCH</div>
+                <div class="sponsor-name">Sarat IAS Academy</div>
+                <div class="sponsor-tagline">
+                  Premier Civil Services Coaching
                 </div>
-                <div class="sponsor-name">Bosch India</div>
-                <div class="sponsor-tagline">IoT & Embedded Systems</div>
-              </a>
-              <a href="#" class="sponsor-card sc-silver reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">ISRO</div>
-                </div>
-                <div class="sponsor-name">ISRO – SAC</div>
-                <div class="sponsor-tagline">Space Applications Centre</div>
-              </a>
-              <a href="#" class="sponsor-card sc-silver reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">WIPRO</div>
-                </div>
-                <div class="sponsor-name">Wipro Technologies</div>
-                <div class="sponsor-tagline">Engineering Services & R&D</div>
               </a>
             </div>
           </div>
 
-          <!-- ── BRONZE SPONSORS ────────────────────────── -->
+          <!-- ── BRONZE SPONSORS (₹15,000) ──────────────── -->
           <div class="tier-section reveal">
             <div class="tier-header tier-bronze-hdr" data-tier="BRONZE">
               <span class="tier-icon">🥉</span>
               <div class="tier-meta">
                 <div class="tier-name">Bronze Sponsors</div>
                 <div class="tier-sub">
-                  &gt; bronze_tier.sys · community presence
+                  &gt; bronze_tier.sys · ₹15,000 · community presence
                 </div>
               </div>
               <span class="tier-badge">Bronze Tier</span>
             </div>
-            <div class="grid-bronze">
+            <div
+              class="grid-bronze"
+              style="
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+              "
+            >
+              <!-- Ohm Academy -->
               <a href="#" class="sponsor-card sc-bronze reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">KPIT</div>
+                  <img
+                    src="./assets/logos/ohm_logo.png"
+                    alt="Ohm Academy"
+                    class="sponsor-logo-img"
+                  />
                 </div>
-                <div class="sponsor-name">KPIT Technologies</div>
-                <div class="sponsor-tagline">Automotive Software</div>
-              </a>
-              <a href="#" class="sponsor-card sc-bronze reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">MICRON</div>
-                </div>
-                <div class="sponsor-name">Micron Technology</div>
-                <div class="sponsor-tagline">Memory & Storage Solutions</div>
-              </a>
-              <a href="#" class="sponsor-card sc-bronze reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">ANALOG</div>
-                </div>
-                <div class="sponsor-name">Analog Devices</div>
-                <div class="sponsor-tagline">Signal Processing ICs</div>
-              </a>
-              <a href="#" class="sponsor-card sc-bronze reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">L&amp;T</div>
-                </div>
-                <div class="sponsor-name">L&amp;T Technology</div>
+                <div class="sponsor-name">Ohm Academy</div>
                 <div class="sponsor-tagline">
-                  Engineering &amp; R&D Services
+                  Engineering Coaching &amp; Training
                 </div>
               </a>
+
+              <!-- Takshila -->
               <a href="#" class="sponsor-card sc-bronze reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">TATA</div>
+                  <img
+                    src="./assets/logos/takshila_logo.jpg"
+                    alt="Takshila"
+                    class="sponsor-logo-img"
+                  />
                 </div>
-                <div class="sponsor-name">Tata Elxsi</div>
-                <div class="sponsor-tagline">Design & Technology Services</div>
+                <div class="sponsor-name">Takshila</div>
+                <div class="sponsor-tagline">
+                  Education &amp; Skill Development
+                </div>
               </a>
             </div>
           </div>
 
-          <!-- ── COMMUNITY PARTNERS ─────────────────────── -->
+          <!-- ── COMMUNITY PARTNERS (₹10,000) ───────────── -->
           <div class="tier-section reveal">
             <div class="tier-header tier-community-hdr" data-tier="COMMUNITY">
               <span class="tier-icon">🤝</span>
               <div class="tier-meta">
-                <div class="tier-name">Community &amp; Media Partners</div>
+                <div class="tier-name">Community Partners</div>
                 <div class="tier-sub">
-                  &gt; ecosystem_partners.log · outreach & media
+                  &gt; community_tier.sys · ₹10,000 · outreach &amp; support
                 </div>
               </div>
-              <span class="tier-badge">Partners</span>
+              <span class="tier-badge">Community Tier</span>
             </div>
-            <div class="grid-community">
+            <div
+              class="grid-community"
+              style="
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+              "
+            >
+              <!-- ACE Academy -->
               <a href="#" class="sponsor-card sc-community reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">IEEE</div>
+                  <img
+                    src="./assets/logos/ace_logo.jpg"
+                    alt="ACE Academy"
+                    class="sponsor-logo-img"
+                  />
                 </div>
-                <div class="sponsor-name">IEEE Hyderabad Section</div>
-                <div class="sponsor-tagline">Technical Society</div>
+                <div class="sponsor-name">ACE Academy</div>
+                <div class="sponsor-tagline">GATE &amp; ESE Coaching</div>
               </a>
+
+              <!-- OU Alumni Association -->
               <a href="#" class="sponsor-card sc-community reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">IETE</div>
+                  <img
+                    src="./assets/logos/alumniassociation_logo.jpg"
+                    alt="OU Alumni Association"
+                    class="sponsor-logo-img"
+                  />
                 </div>
-                <div class="sponsor-name">IETE Hyderabad</div>
-                <div class="sponsor-tagline">Electronics Society</div>
-              </a>
-              <a href="#" class="sponsor-card sc-community reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">ACM</div>
-                </div>
-                <div class="sponsor-name">ACM Student Chapter</div>
-                <div class="sponsor-tagline">Computing Society</div>
-              </a>
-              <a href="#" class="sponsor-card sc-community reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">HYD HUB</div>
-                </div>
-                <div class="sponsor-name">T-Hub Hyderabad</div>
-                <div class="sponsor-tagline">Startup Ecosystem</div>
-              </a>
-              <a href="#" class="sponsor-card sc-community reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">NASSCOM</div>
-                </div>
-                <div class="sponsor-name">NASSCOM</div>
-                <div class="sponsor-tagline">IT Industry Association</div>
-              </a>
-              <a href="#" class="sponsor-card sc-community reveal">
-                <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">CIE</div>
-                </div>
-                <div class="sponsor-name">CIE — OU</div>
+                <div class="sponsor-name">OU Alumni Association</div>
                 <div class="sponsor-tagline">
-                  Centre for Innovation &amp; Entrepreneurship
+                  Osmania University Alumni Network
                 </div>
               </a>
             </div>
@@ -530,119 +526,6 @@
 
       <div class="section-divider"></div>
 
-      <!-- ══════════════════════════════════════════════════
-           BENEFITS TABLE
-      ══════════════════════════════════════════════════ -->
-      <section class="benefits-section">
-        <div class="container">
-          <div class="section-header reveal">
-            <span class="section-tag">&gt; tier_benefits.csv</span>
-            <h2 class="section-title">Partnership <span>Benefits</span></h2>
-            <p class="section-lead">
-              A complete breakdown of what each sponsorship tier includes.
-              Transparent. Impactful. Memorable.
-            </p>
-          </div>
-          <div class="benefits-table-wrap reveal">
-            <table class="benefits-table">
-              <thead>
-                <tr>
-                  <th style="text-align: left; color: var(--text-muted)">
-                    Benefit
-                  </th>
-                  <th class="th-title">👑 Title</th>
-                  <th class="th-plat">💎 Platinum</th>
-                  <th class="th-gold">🥇 Gold</th>
-                  <th class="th-silver">🥈 Silver</th>
-                  <th class="th-bronze">🥉 Bronze</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Event naming rights</td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="cross">—</span></td>
-                  <td><span class="cross">—</span></td>
-                  <td><span class="cross">—</span></td>
-                  <td><span class="cross">—</span></td>
-                </tr>
-                <tr>
-                  <td>Logo on stage backdrop</td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="partial">Small</span></td>
-                  <td><span class="cross">—</span></td>
-                </tr>
-                <tr>
-                  <td>Logo on participant kits</td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="cross">—</span></td>
-                  <td><span class="cross">—</span></td>
-                </tr>
-                <tr>
-                  <td>Dedicated exhibition stall</td>
-                  <td>500 sq ft</td>
-                  <td>200 sq ft</td>
-                  <td>100 sq ft</td>
-                  <td><span class="cross">—</span></td>
-                  <td><span class="cross">—</span></td>
-                </tr>
-                <tr>
-                  <td>Social media feature posts</td>
-                  <td>10+</td>
-                  <td>6</td>
-                  <td>4</td>
-                  <td>2</td>
-                  <td>1</td>
-                </tr>
-                <tr>
-                  <td>Opening ceremony branding</td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="partial">Mention</span></td>
-                  <td><span class="cross">—</span></td>
-                  <td><span class="cross">—</span></td>
-                </tr>
-                <tr>
-                  <td>Keynote / talk opportunity</td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="cross">—</span></td>
-                  <td><span class="cross">—</span></td>
-                  <td><span class="cross">—</span></td>
-                </tr>
-                <tr>
-                  <td>Certificate of partnership</td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                </tr>
-                <tr>
-                  <td>Internship / recruitment drive</td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="check">✔</span></td>
-                  <td><span class="partial">Limited</span></td>
-                  <td><span class="cross">—</span></td>
-                  <td><span class="cross">—</span></td>
-                </tr>
-                <tr>
-                  <td>Complimentary registrations</td>
-                  <td>20</td>
-                  <td>10</td>
-                  <td>5</td>
-                  <td>2</td>
-                  <td>1</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
 
       <!-- ══════════════════════════════════════════════════
            BECOME A SPONSOR CTA
@@ -660,7 +543,7 @@
               <p class="become-desc">
                 Partner with Aakruthi 2K26 and place your brand in front of
                 2000+ engineering students, faculty, and industry professionals
-                over three high-energy days in March 2026 at UCE, Osmania
+                over two high-energy days in March 2026 at UCE, Osmania
                 University, Hyderabad. Customised packages available for every
                 budget.
               </p>
@@ -697,7 +580,6 @@
               <a href="contact.html">Contact</a>
             </div>
             <div class="footer-socials">
-         
               <a
                 href="https://www.linkedin.com/company/aakruthi-fest/"
                 target="_blank"
