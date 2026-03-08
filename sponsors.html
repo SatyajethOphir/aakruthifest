@@ -5,24 +5,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
     <title>
       Sponsors & Partners | Aakruthi 2K26 — ECE Technical Symposium, UCE Osmania
       University
     </title>
     <meta
       name="description"
-      content="Meet the sponsors and partners powering Aakruthi 2K26 — the ECE Technical Symposium of UCE Osmania University. Interested in sponsoring? Reach 2000+ engineering students over 2 days in March 2026, Hyderabad."
+      content="Meet the sponsors and partners powering Aakruthi 2K26 — the ECE Technical Symposium of UCE Osmania University."
     />
     <meta
       name="keywords"
-      content="Aakruthi 2K26 sponsors, ECE Technical Symposium sponsorship, sponsor engineering symposium Hyderabad, UCE Osmania University sponsor, Aakruthi 2026 partners, college symposium sponsorship Hyderabad, sponsor UCEOU"
+      content="Aakruthi 2K26 sponsors, ECE Technical Symposium sponsorship, sponsor engineering symposium Hyderabad, UCE Osmania University sponsor"
     />
     <meta name="author" content="Department of ECE, UCE Osmania University" />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0a0a0f" />
     <link rel="canonical" href="https://aakruthi.osmania.ac.in/sponsors.html" />
-
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Aakruthi 2K26" />
     <meta
@@ -31,7 +29,7 @@
     />
     <meta
       property="og:description"
-      content="Partner with Aakruthi 2K26 and place your brand in front of 2000+ engineering students, faculty, and industry professionals. March 12–13, 2026 · UCE Osmania University, Hyderabad."
+      content="Partner with Aakruthi 2K26 and place your brand in front of 2000+ engineering students. March 12–13, 2026 · UCE Osmania University, Hyderabad."
     />
     <meta
       property="og:image"
@@ -42,22 +40,7 @@
       content="https://aakruthi.osmania.ac.in/sponsors.html"
     />
     <meta property="og:locale" content="en_IN" />
-
     <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:title"
-      content="Sponsors & Partners | Aakruthi 2K26 — ECE Technical Symposium, UCE Osmania"
-    />
-    <meta
-      name="twitter:description"
-      content="Sponsor Aakruthi 2K26 — reach 2000+ engineering students at UCE Osmania University. March 12–13, 2026, Hyderabad. Multiple tiers available."
-    />
-    <meta
-      name="twitter:image"
-      content="https://aakruthi.osmania.ac.in/assets/og-cover.jpg"
-    />
-    <meta name="twitter:site" content="@osmaniauniv" />
-
     <meta name="geo.region" content="IN-TG" />
     <meta name="geo.placename" content="Hyderabad, Telangana, India" />
     <meta name="geo.position" content="17.3850;78.4867" />
@@ -100,6 +83,59 @@
     />
 
     <style>
+      /* ══════════════════════════════════
+         RESPONSIVE FONT SCALING
+      ══════════════════════════════════ */
+      .sponsor-name {
+        font-size: clamp(1rem, 2vw, 1.25rem) !important;
+        line-height: 1.3;
+      }
+      .sponsor-tagline {
+        font-size: clamp(0.8rem, 1.2vw, 0.98rem) !important;
+      }
+      .tier-name {
+        font-size: clamp(1rem, 1.8vw, 1.3rem) !important;
+      }
+      /* Remove the > maximum_visibility.exe style sub lines */
+      .tier-sub {
+        display: none !important;
+      }
+      .tier-badge {
+        font-size: clamp(0.55rem, 1vw, 0.72rem) !important;
+      }
+      .section-title {
+        font-size: clamp(1.7rem, 4vw, 2.9rem) !important;
+      }
+      .section-lead {
+        font-size: clamp(0.92rem, 1.5vw, 1.12rem) !important;
+      }
+      .section-tag {
+        font-size: clamp(0.62rem, 1vw, 0.78rem) !important;
+      }
+      .sponsors-hero-title .t1,
+      .sponsors-hero-title .t2 {
+        font-size: clamp(2.2rem, 6vw, 5rem) !important;
+      }
+      .sponsors-hero-desc {
+        font-size: clamp(0.92rem, 1.4vw, 1.1rem) !important;
+      }
+      .partners-block-title {
+        font-size: clamp(1.2rem, 2.5vw, 1.65rem) !important;
+      }
+      .partners-block-sub {
+        font-size: clamp(0.56rem, 0.9vw, 0.68rem) !important;
+      }
+      .hsp-num {
+        font-size: clamp(1.4rem, 3vw, 2.2rem) !important;
+      }
+      .hsp-lbl {
+        font-size: clamp(0.62rem, 1vw, 0.78rem) !important;
+      }
+      /* Hide the perk tags (Main Stage Naming etc.) on title card */
+      .sponsor-perks {
+        display: none !important;
+      }
+
       /* ── Sponsor logo image sizing ── */
       .sponsor-logo-img {
         max-width: 100%;
@@ -118,12 +154,73 @@
         transform: scale(1.06);
         filter: brightness(1.15) contrast(1.05);
       }
-      /* Ensure logo-wrap has consistent height */
       .sponsor-logo-wrap {
         min-height: 90px;
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+
+      /* ══════════════════════════════════
+         PARTNERS DIVIDER BLOCK
+      ══════════════════════════════════ */
+      .partners-block {
+        margin-top: 5rem;
+      }
+      .partners-block-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1.2rem;
+        margin-bottom: 3rem;
+        padding: 1.2rem 0 1rem;
+        border-top: 1px solid rgba(0, 245, 255, 0.12);
+        position: relative;
+      }
+      .partners-block-header::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 140px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+        box-shadow: 0 0 12px var(--neon-pink);
+      }
+      .partners-block-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        background: linear-gradient(
+          135deg,
+          var(--neon-pink) 0%,
+          var(--neon-blue) 100%
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .partners-block-sub {
+        font-family: "Share Tech Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.3em;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        margin-top: 0.4rem;
+      }
+
+      /* Grid for media and academy partners */
+      .grid-media-partners {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 1.4rem;
+        margin-bottom: 3rem;
+      }
+      .grid-academy-partners {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.4rem;
       }
     </style>
   </head>
@@ -253,7 +350,9 @@
             </p>
           </div>
 
-          <!-- ── TITLE SPONSOR ─────────────────────────── -->
+          <!-- ────────────────────────────────────────────
+               TITLE SPONSOR
+          ──────────────────────────────────────────── -->
           <div class="tier-section reveal">
             <div class="tier-header tier-title-hdr" data-tier="TITLE">
               <span class="tier-icon">👑</span>
@@ -281,24 +380,20 @@
                 <div class="sponsor-tagline">
                   Title sponsor announcement coming soon
                 </div>
-                <div class="sponsor-perks">
-                  <span class="perk-tag">Main Stage Naming</span>
-                  <span class="perk-tag">Logo on All Collateral</span>
-                  <span class="perk-tag">Opening Ceremony Slot</span>
-                  <span class="perk-tag">Dedicated Stall · 500 sq ft</span>
-                </div>
               </a>
             </div>
           </div>
 
-          <!-- ── PLATINUM SPONSORS (₹2,00,000) ─────────── -->
+          <!-- ────────────────────────────────────────────
+               PLATINUM SPONSORS — MosChip & RUSSA
+          ──────────────────────────────────────────── -->
           <div class="tier-section reveal">
             <div class="tier-header tier-platinum-hdr" data-tier="PLATINUM">
               <span class="tier-icon">💎</span>
               <div class="tier-meta">
                 <div class="tier-name">Platinum Sponsors</div>
                 <div class="tier-sub">
-                  &gt; premium_tier.sys · ₹2,00,000 · high-impact visibility
+                  &gt; premium_tier.sys · high-impact visibility
                 </div>
               </div>
               <span class="tier-badge">Platinum Tier</span>
@@ -317,46 +412,47 @@
                 <div class="sponsor-tagline">
                   Semiconductor &amp; VLSI Solutions · Hyderabad
                 </div>
-                <div class="sponsor-perks">
-                  <span class="perk-tag">Event Co-Sponsor</span>
-                  <span class="perk-tag">Stage Banner</span>
-                  <span class="perk-tag">Stall · 200 sq ft</span>
-                </div>
               </a>
 
               <!-- RUSSA -->
               <a href="#" class="sponsor-card sc-platinum reveal">
                 <div class="sponsor-logo-wrap">
-                  <div class="sponsor-logo-placeholder">RUSSA</div>
+                  <img
+                    src="./assets/logos/rusa.gif"
+                    alt="IObit"
+                    class="sponsor-logo-img"
+                  />
                 </div>
                 <div class="sponsor-name">RUSSA</div>
                 <div class="sponsor-tagline">
                   Rashtriya Uchchatar Shiksha Abhiyan
                 </div>
-                <div class="sponsor-perks">
-                  <span class="perk-tag">Event Co-Sponsor</span>
-                  <span class="perk-tag">Stage Banner</span>
-                  <span class="perk-tag">Stall · 200 sq ft</span>
-                </div>
               </a>
             </div>
           </div>
 
-          <!-- ── GOLD SPONSORS (₹50,000) ────────────────── -->
+          <!-- ────────────────────────────────────────────
+               BRONZE SPONSORS — LIC · IObit · TSHEC
+          ──────────────────────────────────────────── -->
           <div class="tier-section reveal">
-            <div class="tier-header tier-gold-hdr" data-tier="GOLD">
-              <span class="tier-icon">🥇</span>
+            <div class="tier-header tier-bronze-hdr" data-tier="BRONZE">
+              <span class="tier-icon">🥉</span>
               <div class="tier-meta">
-                <div class="tier-name">Gold Sponsors</div>
+                <div class="tier-name">Bronze Sponsors</div>
                 <div class="tier-sub">
-                  &gt; gold_tier.sys · ₹50,000 · strong brand exposure
+                  &gt; bronze_tier.sys · community presence
                 </div>
               </div>
-              <span class="tier-badge">Gold Tier</span>
+              <span class="tier-badge">Bronze Tier</span>
             </div>
-            <div class="grid-gold">
+            <div
+              class="grid-bronze"
+              style="
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+              "
+            >
               <!-- LIC -->
-              <a href="#" class="sponsor-card sc-gold reveal">
+              <a href="#" class="sponsor-card sc-bronze reveal">
                 <div class="sponsor-logo-wrap">
                   <img
                     src="./assets/logos/lic_logo.jpg"
@@ -370,8 +466,8 @@
                 </div>
               </a>
 
-              <!-- Iobit -->
-              <a href="#" class="sponsor-card sc-gold reveal">
+              <!-- IObit -->
+              <a href="#" class="sponsor-card sc-bronze reveal">
                 <div class="sponsor-logo-wrap">
                   <img
                     src="./assets/logos/iobit_logo.png"
@@ -384,143 +480,184 @@
                   System Optimisation &amp; Security Software
                 </div>
               </a>
-            </div>
-          </div>
 
-          <!-- ── SILVER SPONSORS (₹20,000) ──────────────── -->
-          <div class="tier-section reveal">
-            <div class="tier-header tier-silver-hdr" data-tier="SILVER">
-              <span class="tier-icon">🥈</span>
-              <div class="tier-meta">
-                <div class="tier-name">Silver Sponsors</div>
-                <div class="tier-sub">
-                  &gt; silver_tier.sys · ₹20,000 · targeted reach
-                </div>
-              </div>
-              <span class="tier-badge">Silver Tier</span>
-            </div>
-            <div
-              class="grid-silver"
-              style="
-                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-                max-width: 500px;
-                margin: 0 auto;
-              "
-            >
-              <!-- Sarat IAS Academy -->
-              <a href="#" class="sponsor-card sc-silver reveal">
-                <div class="sponsor-logo-wrap">
-                  <img
-                    src="./assets/logos/sarat_academy_logo.webp"
-                    alt="Sarat IAS Academy"
-                    class="sponsor-logo-img"
-                  />
-                </div>
-                <div class="sponsor-name">Sarat IAS Academy</div>
-                <div class="sponsor-tagline">
-                  Premier Civil Services Coaching
-                </div>
-              </a>
-            </div>
-          </div>
-
-          <!-- ── BRONZE SPONSORS (₹15,000) ──────────────── -->
-          <div class="tier-section reveal">
-            <div class="tier-header tier-bronze-hdr" data-tier="BRONZE">
-              <span class="tier-icon">🥉</span>
-              <div class="tier-meta">
-                <div class="tier-name">Bronze Sponsors</div>
-                <div class="tier-sub">
-                  &gt; bronze_tier.sys · ₹15,000 · community presence
-                </div>
-              </div>
-              <span class="tier-badge">Bronze Tier</span>
-            </div>
-            <div
-              class="grid-bronze"
-              style="
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-              "
-            >
-              <!-- Ohm Academy -->
+              <!-- Telangana State Higher Education Council -->
               <a href="#" class="sponsor-card sc-bronze reveal">
                 <div class="sponsor-logo-wrap">
                   <img
-                    src="./assets/logos/ohm_logo.png"
-                    alt="Ohm Academy"
+                    src="./assets/logos/tgche-logo.webp"
+                    alt="IObit"
                     class="sponsor-logo-img"
                   />
                 </div>
-                <div class="sponsor-name">Ohm Academy</div>
+                <div class="sponsor-name">TS Higher Education Council</div>
                 <div class="sponsor-tagline">
-                  Engineering Coaching &amp; Training
-                </div>
-              </a>
-
-              <!-- Takshila -->
-              <a href="#" class="sponsor-card sc-bronze reveal">
-                <div class="sponsor-logo-wrap">
-                  <img
-                    src="./assets/logos/takshila_logo.jpg"
-                    alt="Takshila"
-                    class="sponsor-logo-img"
-                  />
-                </div>
-                <div class="sponsor-name">Takshila</div>
-                <div class="sponsor-tagline">
-                  Education &amp; Skill Development
+                  Telangana State Higher Education Council
                 </div>
               </a>
             </div>
           </div>
 
-          <!-- ── COMMUNITY PARTNERS (₹10,000) ───────────── -->
-          <div class="tier-section reveal">
-            <div class="tier-header tier-community-hdr" data-tier="COMMUNITY">
-              <span class="tier-icon">🤝</span>
-              <div class="tier-meta">
-                <div class="tier-name">Community Partners</div>
-                <div class="tier-sub">
-                  &gt; community_tier.sys · ₹10,000 · outreach &amp; support
+          <!-- ══════════════════════════════════════════════
+               PARTNERS BLOCK
+          ══════════════════════════════════════════════ -->
+          <div class="partners-block reveal">
+            <div class="partners-block-header">
+              <div>
+                <div class="partners-block-title">Our Partners</div>
+                <div class="partners-block-sub">
+                  &gt; partners_2k26.log · media · outreach · academia
                 </div>
               </div>
-              <span class="tier-badge">Community Tier</span>
             </div>
-            <div
-              class="grid-community"
-              style="
-                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-              "
-            >
-              <!-- ACE Academy -->
-              <a href="#" class="sponsor-card sc-community reveal">
-                <div class="sponsor-logo-wrap">
-                  <img
-                    src="./assets/logos/ace_logo.jpg"
-                    alt="ACE Academy"
-                    class="sponsor-logo-img"
-                  />
-                </div>
-                <div class="sponsor-name">ACE Academy</div>
-                <div class="sponsor-tagline">GATE &amp; ESE Coaching</div>
-              </a>
 
-              <!-- OU Alumni Association -->
-              <a href="#" class="sponsor-card sc-community reveal">
-                <div class="sponsor-logo-wrap">
-                  <img
-                    src="./assets/logos/alumniassociation_logo.jpg"
-                    alt="OU Alumni Association"
-                    class="sponsor-logo-img"
-                  />
+            <!-- ── MEDIA PARTNERS ─────────────────── -->
+            <div class="tier-section reveal" style="margin-top: 0">
+              <div class="tier-header tier-community-hdr" data-tier="MEDIA">
+                <span class="tier-icon">📺</span>
+                <div class="tier-meta">
+                  <div class="tier-name">Media Partners</div>
+                  <div class="tier-sub">
+                    &gt; media_partners.sys · broadcast &amp; digital reach
+                  </div>
                 </div>
-                <div class="sponsor-name">OU Alumni Association</div>
-                <div class="sponsor-tagline">
-                  Osmania University Alumni Network
+                <span class="tier-badge">Media</span>
+              </div>
+              <div class="grid-media-partners">
+                <!-- ETV Bharat -->
+                <a href="#" class="sponsor-card sc-community reveal">
+                  <div class="sponsor-logo-wrap">
+                    <img
+                      src="./assets/logos/etv.png"
+                      alt="ETV Bharat"
+                      class="sponsor-logo-img"
+                      onerror="
+                        this.style.display = 'none';
+                        this.nextElementSibling.style.display = 'block';
+                      "
+                    />
+                    <div
+                      class="sponsor-logo-placeholder"
+                      style="
+                        display: none;
+                        font-size: 0.9rem;
+                        letter-spacing: 0.06em;
+                      "
+                    >
+                      ETV BHARAT
+                    </div>
+                  </div>
+                  <div class="sponsor-name">ETV Bharat</div>
+                  <div class="sponsor-tagline">
+                    India's Leading News Network
+                  </div>
+                </a>
+
+                <!-- T-Sat -->
+                <a href="#" class="sponsor-card sc-community reveal">
+                  <div class="sponsor-logo-wrap">
+                    <img
+                      src="./assets/logos/T-SAT_logo.jpeg"
+                      alt="T-Sat"
+                      class="sponsor-logo-img"
+                      onerror="
+                        this.style.display = 'none';
+                        this.nextElementSibling.style.display = 'block';
+                      "
+                    />
+                    <div
+                      class="sponsor-logo-placeholder"
+                      style="
+                        display: none;
+                        font-size: 0.9rem;
+                        letter-spacing: 0.12em;
+                      "
+                    >
+                      T-SAT
+                    </div>
+                  </div>
+                  <div class="sponsor-name">T-Sat</div>
+                  <div class="sponsor-tagline">
+                    Telangana Satellite Television Network
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- ── ACADEMY PARTNERS ────────────────── -->
+            <div class="tier-section reveal" style="margin-top: 1.5rem">
+              <div class="tier-header tier-community-hdr" data-tier="ACADEMY">
+                <span class="tier-icon">🎓</span>
+                <div class="tier-meta">
+                  <div class="tier-name">Academy Partners</div>
+                  <div class="tier-sub">
+                    &gt; academy_partners.sys · education &amp; coaching
+                  </div>
                 </div>
-              </a>
+                <span class="tier-badge">Academy</span>
+              </div>
+              <div class="grid-academy-partners">
+                <!-- Sarat Chandra IAS -->
+                <a href="#" class="sponsor-card sc-community reveal">
+                  <div class="sponsor-logo-wrap">
+                    <img
+                      src="./assets/logos/sarat_academy_logo.webp"
+                      alt="Sarat Chandra IAS"
+                      class="sponsor-logo-img"
+                    />
+                  </div>
+                  <div class="sponsor-name">Sarat Chandra IAS</div>
+                  <div class="sponsor-tagline">
+                    Premier Civil Services Coaching
+                  </div>
+                </a>
+
+                <!-- Ohm Academy -->
+                <a href="#" class="sponsor-card sc-community reveal">
+                  <div class="sponsor-logo-wrap">
+                    <img
+                      src="./assets/logos/ohm_logo.png"
+                      alt="Ohm Academy"
+                      class="sponsor-logo-img"
+                    />
+                  </div>
+                  <div class="sponsor-name">Ohm Academy</div>
+                  <div class="sponsor-tagline">
+                    Engineering Coaching &amp; Training
+                  </div>
+                </a>
+
+                <!-- ACE Academy -->
+                <a href="#" class="sponsor-card sc-community reveal">
+                  <div class="sponsor-logo-wrap">
+                    <img
+                      src="./assets/logos/ace_logo.jpg"
+                      alt="ACE Academy"
+                      class="sponsor-logo-img"
+                    />
+                  </div>
+                  <div class="sponsor-name">ACE Academy</div>
+                  <div class="sponsor-tagline">GATE &amp; ESE Coaching</div>
+                </a>
+
+                <!-- Takshashila -->
+                <a href="#" class="sponsor-card sc-community reveal">
+                  <div class="sponsor-logo-wrap">
+                    <img
+                      src="./assets/logos/takshila_logo.jpg"
+                      alt="Takshashila"
+                      class="sponsor-logo-img"
+                    />
+                  </div>
+                  <div class="sponsor-name">Takshashila</div>
+                  <div class="sponsor-tagline">
+                    Education &amp; Skill Development
+                  </div>
+                </a>
+              </div>
             </div>
           </div>
+          <!-- /.partners-block -->
         </div>
       </section>
 
@@ -549,16 +686,14 @@
             </div>
             <div class="become-actions">
               <a
-                href="mailto:aakruthi2k26@osmania.ac.in"
+                href="/cdn-cgi/l/email-protection#b1d0d0dac3c4c5d9d883da8387f1dec2dcd0dfd8d09fd0d29fd8df"
                 class="btn-cyber btn-gold"
                 >📧 Email Us</a
               >
               <a href="tel:+919177573069" class="btn-cyber btn-primary"
                 >📞 Call Now</a
               >
-              <p class="contact-note">
-                aakruthi2k26@osmania.ac.in<br />+91 91775 73069
-              </p>
+             
             </div>
           </div>
         </div>
@@ -624,6 +759,10 @@
       </footer>
     </main>
 
+    <script
+      data-cfasync="false"
+      src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
     <script src="script.js"></script>
     <script>
       /* ── SCROLL REVEAL ─────────────────── */
