@@ -1006,10 +1006,8 @@ main {
   line-height: 1;
   text-transform: uppercase;
   text-align: center;
-  animation: fadeUp 0.8s 0.1s ease;
   width: 100%;
 }
-
 .hero-title .line1 {
   display: block;
   color: var(--text);

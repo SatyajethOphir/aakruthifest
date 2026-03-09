@@ -918,6 +918,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 1200);
 
   document.querySelectorAll(".glitch").forEach((el) => {
+    // Skip the hero title — its animation is handled once by initHeroTitleAnim()
+    if (el.classList.contains("hero-title")) return;
     setInterval(
       () => {
         el.style.animation = "none";
@@ -928,7 +930,6 @@ document.addEventListener("DOMContentLoaded", () => {
       Math.random() * 8000 + 4000,
     );
   });
-
   // ════════════════════════════════════════════════════
   //  MEMORIES PAGE
   // ════════════════════════════════════════════════════
