@@ -477,6 +477,13 @@
         grid-template-columns: unset !important;
       }
 
+      /* Creative-accented meta block for Pradarshana */
+      .event-meta-creative {
+        border-left-color: var(--neon-pink) !important;
+        background: rgba(255, 43, 242, 0.03) !important;
+        border-color: rgba(255, 43, 242, 0.12) !important;
+      }
+
       .event-register {
         position: relative;
         overflow: hidden;
@@ -653,7 +660,7 @@
 
         <div class="event-count-badge" id="eventCountBadge">
           <span class="dot"></span
-          ><span id="eventCountText">12 EVENTS LOADED</span>
+          ><span id="eventCountText">13 EVENTS LOADED</span>
         </div>
 
         <!-- Filter bar -->
@@ -674,7 +681,7 @@
               onclick="jumpTo('sec-technical', this)"
             >
               <span class="snav-icon">&#9881;&#65039;</span> Technical
-              <span class="snav-count">08</span>
+              <span class="snav-count">07</span>
             </button>
             <div class="snav-sep"></div>
             <button
@@ -683,7 +690,7 @@
               onclick="jumpTo('sec-creative', this)"
             >
               <span class="snav-icon">&#127912;</span> Creative
-              <span class="snav-count">01</span>
+              <span class="snav-count">02</span>
             </button>
             <div class="snav-sep"></div>
             <button
@@ -707,13 +714,13 @@
         </div>
 
         <!-- ══════════════════════════════════════════════
-             TECHNICAL  (08 events — includes Pradarshana & Chanakya)
+             TECHNICAL  (07 events)
         ══════════════════════════════════════════════ -->
         <div class="evt-strip" id="sec-technical">
           <div class="strip-hd">
             <span class="sh-scan"></span>
             <span class="sh-label">&#9881; &nbsp;TECHNICAL_EVENTS //</span>
-            <span class="sh-chip">08 EVENTS</span>
+            <span class="sh-chip">07 EVENTS</span>
           </div>
           <div class="events-grid">
             <!-- Prasthuthi -->
@@ -808,7 +815,7 @@
               <div class="event-img-wrap">
                 <img
                   class="event-img"
-                  src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="./assets/medha.jpg"
                   alt="Medha"
                 />
                 <div class="event-img-overlay"></div>
@@ -848,7 +855,7 @@
               <div class="event-img-wrap">
                 <img
                   class="event-img"
-                  src="https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="./assets/robot_war.jpg"
                   alt="Yantra"
                 />
                 <div class="event-img-overlay"></div>
@@ -919,7 +926,7 @@
               <div class="event-img-wrap">
                 <img
                   class="event-img"
-                  src="https://images.pexels.com/photos/5428833/pexels-photo-5428833.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="./assets/quiz.jpg"
                   alt="Trishna"
                 />
                 <div class="event-img-overlay"></div>
@@ -955,52 +962,7 @@
               </div>
             </div>
 
-            <!-- ★ Pradarshana — MOVED TO TECHNICAL ★ -->
-            <div class="event-card" data-cat="tech">
-              <div class="event-img-wrap">
-                <img
-                  class="event-img"
-                  src="https://images.pexels.com/photos/1762851/pexels-photo-1762851.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Pradarshana"
-                />
-                <div class="event-img-overlay"></div>
-                <div class="event-category cat-tech">Technical</div>
-              </div>
-              <div class="event-body">
-                <div class="event-name" data-text="Pradarshana">
-                  Pradarshana
-                </div>
-                <div class="event-desc">
-                  A poster presentation contest which measures a convergence of
-                  spread of ideas through posters.
-                </div>
-                <div class="event-meta">
-                  <div class="event-meta-item">
-                    <span class="icon">&#128176;</span> &#8377;150 / 1 person
-                  </div>
-                  <div class="event-meta-item">
-                    <span class="icon">&#128176;</span> &#8377;250 / 2 people
-                  </div>
-                  <div class="event-meta-item">
-                    <span class="icon">&#128176;</span> &#8377;300 / 3 people
-                  </div>
-                  <div class="event-meta-item">
-                    <span class="icon">&#127942;</span> Prizes Await
-                  </div>
-                  <div class="event-meta-item">
-                    <span class="icon">&#128197;</span> TBA
-                  </div>
-                </div>
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSdKZqBDgdHuq2b-pORSBE0f2W6-q362hCnx4znXIr0N7wzXUA/viewform"
-                  target="_blank"
-                  class="event-register"
-                  >Register &rarr;</a
-                >
-              </div>
-            </div>
-
-            <!-- ★ Chanakya — MOVED TO TECHNICAL ★ -->
+            <!-- Chanakya -->
             <div class="event-card" data-cat="tech">
               <div class="event-img-wrap">
                 <img
@@ -1045,15 +1007,59 @@
         <!-- /#sec-technical -->
 
         <!-- ══════════════════════════════════════════════
-             CREATIVE  (01 event — Laghuchitra only)
+             CREATIVE  (02 events — Pradarshana + Laghuchitra)
         ══════════════════════════════════════════════ -->
         <div class="evt-strip" id="sec-creative">
           <div class="strip-hd">
             <span class="sh-scan"></span>
             <span class="sh-label">&#127912; &nbsp;CREATIVE_EVENTS //</span>
-            <span class="sh-chip">01 EVENT</span>
+            <span class="sh-chip">02 EVENTS</span>
           </div>
           <div class="events-grid">
+            <!-- ★ Pradarshana — MOVED HERE FROM TECHNICAL ★ -->
+            <div class="event-card" data-cat="creative">
+              <div class="event-img-wrap">
+                <img
+                  class="event-img"
+                  src="https://images.pexels.com/photos/355952/pexels-photo-355952.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  alt="Pradarshana"
+                />
+                <div class="event-img-overlay"></div>
+                <div class="event-category cat-creative">Creative</div>
+                <div class="featured-badge">&#11088; Featured</div>
+              </div>
+              <div class="event-body">
+                <div class="event-name" data-text="Pradarshana">
+                  Pradarshana
+                </div>
+                <div class="event-desc">
+                  Showcase your creativity through striking poster designs.
+                  Present your ideas visually and compete with the best design
+                  minds in a thrilling poster-making contest.
+                </div>
+                <div class="event-meta event-meta-creative">
+                  <div class="event-meta-item">
+                    <span class="icon">&#128101;</span> Team of 1&ndash;2
+                  </div>
+                  <div class="event-meta-item">
+                    <span class="icon">&#128176;</span> &#8377;100 / entry
+                  </div>
+                  <div class="event-meta-item">
+                    <span class="icon">&#127942;</span> Prizes Await
+                  </div>
+                  <div class="event-meta-item">
+                    <span class="icon">&#128197;</span> TBA
+                  </div>
+                </div>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSesmh7PUToAUzqsna-FbfXve4PI6haWsXbk8SwYU3iuaCMM6A/viewform"
+                  target="_blank"
+                  class="event-register"
+                  >Register &rarr;</a
+                >
+              </div>
+            </div>
+
             <!-- Laghuchitra -->
             <div class="event-card" data-cat="creative">
               <div class="event-img-wrap">
@@ -1100,7 +1106,7 @@
         <!-- /#sec-creative -->
 
         <!-- ══════════════════════════════════════════════
-             CULTURAL  (01 event — Aahladakara only)
+             CULTURAL  (01 event)
         ══════════════════════════════════════════════ -->
         <div class="evt-strip" id="sec-cultural">
           <div class="strip-hd">
@@ -1265,9 +1271,10 @@
             </div>
           </div>
           <div class="footer-links">
-            <a href="index.html">Home</a><a href="events.html">Events</a>
-            <a href="memories.html">Memories</a
-            ><a href="contact.html">Contact</a>
+            <a href="index.html">Home</a>
+            <a href="events.html">Events</a>
+            <a href="memories.html">Memories</a>
+            <a href="contact.html">Contact</a>
           </div>
           <div class="footer-socials">
             <a
