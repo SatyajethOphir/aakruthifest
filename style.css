@@ -4421,32 +4421,50 @@ footer::before {
   letter-spacing: 0.15em;
 }
 .footer-copy a {
-  color: #e8e8e8;
+  color: var(--neon-blue, #00f5ff);
   text-decoration: none;
   position: relative;
-  letter-spacing: 0.12em;
-  transition: color 0.2s ease;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
+/* dual-line bracket effect */
+.footer-copy a::before,
 .footer-copy a::after {
   content: "";
   position: absolute;
-  bottom: -1px;
+  bottom: -2px;
+  height: 1px;
+  transition: width 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* primary line — slides in from left */
+.footer-copy a::after {
   left: 0;
   width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, #fff 0%, transparent 100%);
-  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--neon-blue, #00f5ff);
+  box-shadow: 0 0 6px rgba(0, 245, 255, 0.7);
+}
+
+/* secondary line — slides in from right, offset */
+.footer-copy a::before {
+  right: 0;
+  width: 0;
+  bottom: -4px;
+  background: rgba(0, 245, 255, 0.35);
+  transition-delay: 0.05s;
 }
 
 .footer-copy a:hover {
   color: #ffffff;
   text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.6),
-    0 0 20px rgba(255, 255, 255, 0.2);
+    0 0 12px rgba(0, 245, 255, 0.55),
+    0 0 30px rgba(0, 245, 255, 0.15);
 }
 
-.footer-copy a:hover::after {
+.footer-copy a:hover::after,
+.footer-copy a:hover::before {
   width: 100%;
 }
 .footer-socials {
