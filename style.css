@@ -4420,7 +4420,35 @@ footer::before {
   color: var(--text-muted);
   letter-spacing: 0.15em;
 }
+.footer-copy a {
+  color: #e8e8e8;
+  text-decoration: none;
+  position: relative;
+  letter-spacing: 0.12em;
+  transition: color 0.2s ease;
+}
 
+.footer-copy a::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #fff 0%, transparent 100%);
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-copy a:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.6),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.footer-copy a:hover::after {
+  width: 100%;
+}
 .footer-socials {
   display: flex;
   align-items: center;
